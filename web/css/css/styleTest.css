@@ -1,0 +1,76 @@
+main .fondo{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.tablas{
+    margin-bottom: 20px;
+    width: 90vw;
+}
+#table01 tbody tr td:first-child{
+    min-width: 200px;
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form [type="submit"]{
+    background-color: rgb(97, 206, 97);
+    color: white;
+    font-size: 18px;
+    padding: 8px 13px;
+    margin: 5px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
+}
+form [type="submit"]:hover{
+    background-color: green;
+    cursor: pointer;
+}
+form [type="text"]{
+    text-align: center;
+    width: 30px;
+}
+form textarea{
+    margin-top: 10px;
+    width: 80vw;
+    border-radius: 10px;
+    padding: 5px;
+    color: rgb(100,100,100);
+}
+form label{
+    color: rgb(100,100,100);
+}
+.cancelar{
+    background-color: rgb(240, 89, 89);
+    color: white;
+    padding: 8px 13px;
+    margin: 40px 0 5px 0;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.cancelar:hover{
+    background-color: red;
+}
+div.ob{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+@media only screen and (min-width: 600px){
+    form textarea{
+        width: 70vw;
+    }
+}
+@media only screen and (min-width: 768px){
+    form textarea{
+        width: 40vw;
+    }
+}

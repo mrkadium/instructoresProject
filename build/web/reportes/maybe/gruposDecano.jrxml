@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51d9ce9e-79b7-40a6-9be1-61c432b83cdc">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="19"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="iddecano" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+	idgrupo as 'ID Grupo',
+	(select materia from materia where idmateria = g.idmateria) as Materia,
+	(select concat(nombres, ' ', apellidos) from usuario where idusuario = g.idinstructor) as Instructor,
+	(select concat(nombres, ' ', apellidos) from usuario where idusuario = g.idcatedratico) as Catedratico,
+	numero_grupo as 'Grupo', clave as 'Clave', ciclo as 'Ciclo',
+    (select (select valoracion from valoracion where idvaloracion = (format(avg(le.idvaloracion),0)))
+		from literal_evaluacion le
+		where idevaluacion in (select idevaluacion from evaluacion where idgrupo = g.idgrupo)) as Promedio
+from grupo g
+where g.idmateria in (select idmateria from materia where idcarrera = (select idcarrera from carrera where idfacultad = (select idfacultad from facultad where iddecano = $P{iddecano}) limit 1))
+;]]>
+	</queryString>
+	<field name="ID Grupo" class="java.lang.Integer"/>
+	<field name="Materia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Instructor" class="java.lang.String"/>
+	<field name="Catedratico" class="java.lang.String"/>
+	<field name="Grupo" class="java.lang.String"/>
+	<field name="Clave" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ciclo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Promedio" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="69" height="20" uuid="553d12fb-815e-4f31-9f65-2f3217a8e27f"/>
+				<text><![CDATA[ID Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="0" width="69" height="20" uuid="7e0d3d6e-ca39-4d3a-927e-ec900e4e3ea0"/>
+				<text><![CDATA[Materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="69" height="20" uuid="4bc082c1-b947-4a84-bd89-1c3c66377df7"/>
+				<text><![CDATA[Instructor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="69" height="20" uuid="7e839fed-cd31-4d87-897a-3fe270551800"/>
+				<text><![CDATA[Catedratico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="69" height="20" uuid="906578ac-a5ae-4179-b2ba-135c997d8fba"/>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="69" height="20" uuid="81a626ef-75df-4e76-8423-744a9a3eb282"/>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="69" height="20" uuid="f842da77-8932-4e7b-b8b9-d535dfe19ced"/>
+				<text><![CDATA[Ciclo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="0" width="69" height="20" uuid="fd83845f-d9db-4c41-a570-f148984942c4"/>
+				<text><![CDATA[Promedio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="69" height="20" uuid="bd067e13-abc6-4974-9225-359df7d47fa8"/>
+				<textFieldExpression><![CDATA[$F{ID Grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="69" height="20" uuid="6fa02444-6fde-4165-af3d-3cb3e449071e"/>
+				<textFieldExpression><![CDATA[$F{Materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="69" height="20" uuid="42b5f68b-cdb4-4b99-b670-34957e99fa61"/>
+				<textFieldExpression><![CDATA[$F{Instructor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="69" height="20" uuid="7774ca81-bf6b-4ddc-af44-baad44fe2956"/>
+				<textFieldExpression><![CDATA[$F{Catedratico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="69" height="20" uuid="330178cb-c31a-4bba-8331-23f127390724"/>
+				<textFieldExpression><![CDATA[$F{Grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="69" height="20" uuid="c719c17b-85e3-4282-94b2-469915825d8b"/>
+				<textFieldExpression><![CDATA[$F{Clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="69" height="20" uuid="0440c245-7b83-4a97-b306-8cf98e09e3ec"/>
+				<textFieldExpression><![CDATA[$F{Ciclo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="69" height="20" uuid="a44e5cef-6105-4dee-a79a-4853fa4aface"/>
+				<textFieldExpression><![CDATA[$F{Promedio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

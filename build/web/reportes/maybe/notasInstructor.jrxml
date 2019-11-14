@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd12059a-a46e-4b53-911a-e057657c9e42">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<parameter name="idinstructor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instructor" class="java.lang.String"/>
+	<parameter name="cantidad" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    c.literal AS 'Literal',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Excelente') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Excelente',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Muy bueno') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Muy bueno',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Bueno') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Bueno',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Decente') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Decente',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Necesita mejorar') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Necesita mejorar',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Si') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'Si',
+    COUNT((SELECT x.idvaloracion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'No') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) AS 'No',
+    IF(AVG((SELECT x.calificacion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Calificación') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)) IS NULL, '-' ,FORMAT(AVG((SELECT x.calificacion FROM literal_evaluacion x WHERE x.idvaloracion = (SELECT y.idvaloracion FROM valoracion y WHERE valoracion = 'Calificación') AND x.idliteral = a.idliteral AND x.idevaluacion = b.idevaluacion)),0)) AS 'Calificación'
+FROM literal_evaluacion a, evaluacion b, literal c
+WHERE 
+	a.idevaluacion = b.idevaluacion 
+    AND a.idliteral = c.idliteral 
+    AND b.idgrupo IN (SELECT g.idgrupo FROM grupo g WHERE g.idinstructor = $P{idinstructor})
+GROUP BY a.idliteral
+;]]>
+	</queryString>
+	<field name="Literal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Excelente" class="java.lang.Long"/>
+	<field name="Muy bueno" class="java.lang.Long"/>
+	<field name="Bueno" class="java.lang.Long"/>
+	<field name="Decente" class="java.lang.Long"/>
+	<field name="Necesita mejorar" class="java.lang.Long"/>
+	<field name="Si" class="java.lang.Long"/>
+	<field name="No" class="java.lang.Long"/>
+	<field name="Calificación" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="171" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="213" y="0" width="141" height="50" uuid="85762488-38cb-4838-92dd-bff39aa4374f"/>
+				<imageExpression><![CDATA["C:\\Users\\Soldier4\\Documents\\NetBeansProjects\\InstructoresProject\\web\\reportes\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="60" width="549" height="30" backcolor="#F7F7F7" uuid="b33b5dcd-1fbf-4484-b4e1-a4764eccc35b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE EVALUACIONES REALIZADAS A INSTRUCTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="102" width="66" height="20" uuid="74eb7fd8-0ab6-4b4c-a05a-ca8ce3641f4a"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ID Instructor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="122" width="53" height="20" uuid="686cd643-8583-46c3-b1d4-608861fd6cc9"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Instructor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="122" width="222" height="20" uuid="0ec9ddbd-a7d4-41cf-9cf8-06e4a9646d26"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{instructor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="102" width="20" height="20" uuid="6ec313db-919c-4e4a-b358-c4742eaefa75"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idinstructor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="142" width="141" height="20" uuid="88a36917-219e-4ce5-bdef-03cf51595874"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de evaluaciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="142" width="28" height="20" uuid="b107332d-0169-4945-a74c-76b05ff6ec69"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="412" y="102" width="137" height="20" uuid="7d75e26e-b8bc-4c83-bad4-2cb87ca17564"/>
+				<textElement textAlignment="Right">
+					<font pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="13" width="401" height="19" backcolor="#F7F7F7" uuid="25a7ec92-4ca5-4fe7-9638-469452348918"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Literal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="401" y="13" width="15" height="19" backcolor="#F7F7F7" uuid="606a1596-2c88-4657-b444-3fa55be6738f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="416" y="13" width="17" height="19" backcolor="#F7F7F7" uuid="667ee671-442e-4859-b238-d3b454e418bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[MB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="433" y="13" width="18" height="19" backcolor="#F7F7F7" uuid="f7928b9e-b173-4fe5-b50d-960db033cea6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="451" y="13" width="16" height="19" backcolor="#F7F7F7" uuid="927bf559-6860-44bd-9018-0a37b0afa936"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="467" y="13" width="22" height="19" backcolor="#F7F7F7" uuid="262992c5-6a0d-4ebb-a3a2-6ba71a93a147"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[NM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="489" y="13" width="17" height="19" backcolor="#F7F7F7" uuid="b97977b1-d687-4aaa-a3c8-58893ba9ff44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Si]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="506" y="13" width="17" height="19" backcolor="#F7F7F7" uuid="28533296-1864-4f61-b84f-c373adeb122b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="523" y="13" width="26" height="19" backcolor="#F7F7F7" uuid="ee870ad8-7c2b-40e9-a848-ab095bd2ed98"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Calif.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="401" height="31" uuid="e6afbe20-3737-4f7a-badb-c03bacc6cafc"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Literal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="15" height="31" uuid="89b24be9-67f4-4ed8-a315-a538c9e612dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Excelente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="0" width="17" height="31" uuid="4ff0ec48-60bb-4396-832c-4acc141e5622"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Muy bueno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="18" height="31" uuid="f3685e42-866e-4654-9d91-cfde786f0b41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Bueno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="17" height="31" uuid="ad10ed1c-4d3d-4332-84d3-1f5fc6b2fb5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Si}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="0" width="17" height="31" uuid="125b876e-9697-4de6-b661-3bd336ad1789"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{No}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="0" width="26" height="31" uuid="3fb659f2-d13d-4014-86bb-bd934dba6142"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Calificación}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="0" width="16" height="31" uuid="9ef139a2-6ea0-4219-984c-6e5d635ac4df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Decente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="0" width="22" height="31" uuid="d0c6e6e2-0219-4305-8889-b7416e2e409d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Necesita mejorar}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="33" width="551" height="1" uuid="ec27788e-b3ff-4507-b841-6ae6ab9b56b0"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="2" width="100" height="14" uuid="acc8dda2-620f-4178-b7c8-0d03d343e752"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[E = Excelente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="16" width="100" height="14" uuid="d636b927-2e22-49e6-a081-ba978969e69d"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MB = Muy Bueno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="30" width="100" height="14" uuid="d08bb849-66a1-41de-b70b-58abcaf2aed5"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[B = Bueno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="44" width="100" height="14" uuid="fec4a3b2-6e6a-4e89-a7c4-4897044b385f"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[D = Decente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="58" width="103" height="14" uuid="4f62e414-690e-446e-a4a6-3f05f2f32e0d"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[NM = Necesita Mejorar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="52" width="80" height="20" uuid="f8a0623b-7569-45e0-ad15-1612f485da7a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="52" width="40" height="20" uuid="8a64ba70-5e57-4d71-8c57-bb9f3f191ab7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

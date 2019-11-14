@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    box-sizing: border-box;
+    font-family: helvetica, arial;
+}
+
+/* CONTENEDOR */
+.contenedor{ /* Estilo de pantalla */
+    height: 100vh;
+    width: 100%;
+    color: rgb(104, 104, 104);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.contenedor{ /* Estilo de diseÃ±o */
+    background: rgb(255, 255, 255);
+}
+.bg{
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+}
+form div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+form label{
+    display: none;
+}
+i{
+    margin: 0 7px;
+}
+
+/* CONTENEDOR > */
+.contenedor img{
+    height: 25%;
+}
+.contenedor h1{
+    font-size: 14px;
+}
+.contenedor h1 span{
+    color: green;
+}
+.contenedor table{
+    width: 80%;
+}
+.contenedor table tr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+.contenedor [type="text"], .contenedor [type="password"]{
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 2px solid rgb(219, 219, 219);
+}
+.contenedor [type="text"]:focus, .contenedor [type="password"]:focus{
+    outline: none;
+    box-shadow: 0 0 8px dodgerblue;
+}
+.contenedor [type="submit"]{
+    width: 120px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    border: 0;
+    font-weight: bold;
+
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+.contenedor [type="submit"]:hover{
+    background-color: rgb(14, 83, 151);
+    cursor: pointer;
+}
+.contenedor a{
+    text-decoration: none;
+    color: rgb(14, 83, 151);
+}
+.contenedor a:hover{
+    font-weight: bold;
+}
+
+@media only screen and (max-height: 400px){
+    .contenedor h2{
+        padding-top: 10px;
+        font-size: 18px;
+    }
+    .contenedor a{
+        padding-bottom: 10px;
+    }
+}
+@media only screen and (min-width: 500px){
+    .contenedor [type="text"], .contenedor [type="password"]{
+        margin-bottom: 0;
+        width: 200px;
+    }
+    .contenedor h1{
+        font-size: 22px;
+    }
+    form div{
+        flex-direction: row;
+    }
+}
+@media only screen and (min-width: 768px){
+    .contenedor{
+        width: 80%;
+        background: rgb(255, 255, 255);
+    }
+    .tenue{
+        background: rgba(255, 255, 255, 0.95);
+    }
+}

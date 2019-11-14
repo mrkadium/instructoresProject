@@ -1,0 +1,178 @@
+main>p{
+    margin: 20px 0 5px 0;
+    text-align: center;
+}
+main>p.correcto{
+    color: green;
+}
+main>p.error{
+    color: rgb(250, 118, 118);
+}
+main .fondo{
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.conf{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+.conf>a{
+    display: block;
+    padding: 10px;
+    color: white;
+    background: rgb(97, 206, 97);
+    text-decoration: none;
+    border-radius: 5px;
+}
+.conf>a:hover{
+    background-color: green;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.header h1{
+    color: rgb(100,100,100);
+}
+.header form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header #buscar, .header #category{
+    height: 30px;
+    width: 90vw;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid rgb(230,230,230);
+    outline: none;
+    font-size: 16px;
+    margin: 40px 0 10px 0;
+}
+.header #category{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.header #reset{
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    background-color: rgb(150,150,150);
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 3px 3px 5px -3px black;
+}
+.header #reset:hover{
+    background-color: green;
+    cursor: pointer;
+}
+.header #buscar:focus{
+    box-shadow: 0 0 5px rgba(30, 143, 255, 0.8);
+}
+.tablas{
+    width: 100%;
+    overflow-x: scroll;
+    border-radius: 10px;
+    /* border: 2px solid rgb(200,200,200); */
+}
+.mensaje{
+    /* display: none; */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+.mensaje p{
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    color:rgb(97, 206, 97);
+}
+.mensaje a{
+    display: block;
+    width: fit-content;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(97, 206, 97);
+}
+#table01 tbody tr{
+    background-color: rgb(226, 248, 226);
+    transition: background-color .3s ease;
+}
+#table01 tbody tr:nth-child(odd){
+    background-color: white;
+}
+#table01 tbody tr:hover{
+    background-color: rgb(245,245,245);
+}
+#table01 tr .btn{
+    font-size: 20px;
+    color:rgb(150, 150, 150);
+}
+#table01 tr .btn:hover{
+    color:rgb(97, 206, 97);
+}
+#table01{
+    /* border: 1px solid rgb(150, 150, 150); */
+    border-collapse: collapse;
+    background-color: white;
+    width: 100%;
+}
+#table01 thead{
+    background: rgb(97, 206, 97);
+    color: white;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+#table01 th, #table01 td{
+    padding: 5px;
+    /* border: 1px solid rgb(150,150,150); */
+}
+#table01 td{
+    color: rgb(100,100,100);
+    font-size: 14px;
+    text-align: center;
+}
+#table01 td>a{
+    color: green;
+}
+
+@media only screen and (min-width: 450px){
+    .mensaje{
+        display: none;
+    }
+}
+@media only screen and (min-width: 600px){
+    .header #buscar{
+        width:70vw;
+    }
+    .header #category{
+        width: 70%;
+    }
+    .mensaje{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1000px){
+    .header #buscar{
+        width:50vw;
+    }
+}
