@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,5 +8,11 @@
     </head>
     <body>
         <h1>Error404!</h1>
+        <p>${class}</p>
+        <p>${ex}</p>
+        <p>${cause}</p>
+        <p>${message}</p>
+        <p><i>${request_uri}</i></p>
+        <p><i>${servlet_name}</i></p>
     </body>
 </html>

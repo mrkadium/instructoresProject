@@ -50,8 +50,10 @@
             </table>
             <p>Evaluaciones hechas a este grupo: <span>${cantidad}</span></p>
             <div class="prints">
-                <a class="print" href="${pageContext.servletContext.contextPath}/Reportes?accion=detalle&id=${gr.idgrupo}"><i class="fas fa-print"></i> Generar reporte [detallado]</a>
-                <a class="print" href="${pageContext.servletContext.contextPath}/Reportes?id=${gr.idgrupo}"><i class="fas fa-print"></i> Generar reporte [promedios]</a>
+                <c:if test="${nombre_rol == 'admin' || nombre_rol == 'decano'}">
+                    <a class="print" target="_blank" href="${pageContext.servletContext.contextPath}/Reportes?accion=detalle&id=${gr.idgrupo}"><i class="fas fa-print"></i> Generar reporte</a>
+                    <!--<a class="print" href="${pageContext.servletContext.contextPath}/Reportes?id=${gr.idgrupo}"><i class="fas fa-print"></i> Generar reporte [promedios]</a>-->
+                </c:if>
             </div>
         </div>
         <div class="mostrar">

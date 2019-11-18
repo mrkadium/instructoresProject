@@ -10,6 +10,9 @@
 <main>
     <div class="fondo">
         <div class="header">
+            <c:if test="${error != null}">
+                <p style="color: red"> ${error}</p>
+            </c:if>
             <h1>Lista de grupos</h1>
             <form action="">
                 <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">

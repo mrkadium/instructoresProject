@@ -2,25 +2,27 @@ window.onload = function(){
 
     // BURGER MENU
     const mob = document.querySelector(".mob");
-    const fabars = document.querySelector(".burger .fa-bars");
-    const fatimes = document.querySelector(".burger .fa-times");
+    if(mob){
+        const fabars = document.querySelector(".burger .fa-bars");
+        const fatimes = document.querySelector(".burger .fa-times");
 
-    mob.style = "display: none;";
+        mob.style = "display: none;";
 
-    if(mob && fabars && fatimes){
-        fabars.addEventListener('click', function(){
-            fabars.style = "display: none;";
-            fatimes.style = "display: block;";
-            mob.style = "";
-        });
-    }
+        if(mob && fabars && fatimes){
+            fabars.addEventListener('click', function(){
+                fabars.style = "display: none;";
+                fatimes.style = "display: block;";
+                mob.style = "";
+            });
+        }
 
-    if(mob && fabars && fatimes){
-        fatimes.addEventListener('click', function(){
-            fatimes.style = "display: none;";
-            fabars.style = "display: block;";
-            mob.style = "display: none;";
-        });
+        if(mob && fabars && fatimes){
+            fatimes.addEventListener('click', function(){
+                fatimes.style = "display: none;";
+                fabars.style = "display: block;";
+                mob.style = "display: none;";
+            });
+        }
     }
 
 

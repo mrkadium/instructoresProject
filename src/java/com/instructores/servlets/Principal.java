@@ -59,6 +59,10 @@ public class Principal extends HttpServlet {
             }else{
                 switch(accion){
                     case "resultados":
+                        if(request.getSession().getAttribute("error") != null){
+                            request.setAttribute("error",request.getSession().getAttribute("error"));
+                            request.getSession().removeAttribute("error");
+                        }
                         resultados(request, response);
                         break;
                     case "grupo":
@@ -472,10 +476,13 @@ public class Principal extends HttpServlet {
                 tab.setPaginaModificable("/Principal?accion=grupo");
                 tab.setIconoModificable(Tabla.ICON.VER_MAS);
                 tab.setCabeceraModificable("Ver más");
-                tab.setImprimible(true);
-                tab.setPaginaImprimible("/Reportes?accion=detalle");
-                tab.setIconoImprimible(Tabla.ICON.IMPRIMIR);
-                tab.setCabeceraImprimible("Reporte");
+                String rol = request.getSession().getAttribute("nombre_rol").toString();
+                if(rol.equals("admin") || rol.equals("decano")){
+                    tab.setImprimible(true);
+                    tab.setPaginaImprimible("/Reportes?accion=detalle");
+                    tab.setIconoImprimible(Tabla.ICON.IMPRIMIR);
+                    tab.setCabeceraImprimible("Reporte");
+                }
 //                tab.setSeleccionable(true);
 //                tab.setPaginaSeleccionable("/Reportes?accion=detalle");
 //                tab.setIconoSeleccionable(Tabla.ICON.IMPRIMIR);
