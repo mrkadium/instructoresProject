@@ -438,7 +438,11 @@ public class Principal extends HttpServlet {
                 
                 switch(request.getSession().getAttribute("Rolname").toString()){
                     case "decano":
-                        sql += "AND a.idmateria in (select idmateria from materia where idcarrera = (select idcarrera from carrera where idfacultad = (select idfacultad from facultad where iddecano = ?) limit 1)) or idinstructor = ?";
+                        sql += " AND a.idmateria in "
+                                + "(select idmateria from materia where idcarrera = "
+                                    + "(select idcarrera from carrera where idfacultad = "
+                                        + "(select idfacultad from facultad where iddecano = ?) limit 1)) "
+                                + "or idinstructor = ?";
                         params.add(request.getSession().getAttribute("Idusuario"));
                         params.add(request.getSession().getAttribute("Idusuario"));
                         break;

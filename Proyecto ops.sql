@@ -34,10 +34,10 @@ INSERT INTO materia(materia, alias, idcarrera) VALUES
 ('Diseño web', 'DW', 1),
 ('Desarrollo de software II', 'DS2', 1);
 
-INSERT INTO grupo(idmateria, idinstructor, idcatedratico, numero_grupo, ciclo) VALUES
-(1,8,1, '07', '01/19'),
-(2,8,6, '07', '01/19'),
-(2,7,6, '01', '01/19')
+INSERT INTO grupo(idmateria, idinstructor, idcatedratico, numero_grupo, ciclo, estado) VALUES
+(1,8,1, '07', '01/19', 'Habilitado'),
+(2,8,6, '07', '01/19', 'Habilitado'),
+(2,7,6, '01', '01/19', 'Habilitado')
 ;
 
 -- insert into tipo(tipo, tipo_input, guarda_valor) values

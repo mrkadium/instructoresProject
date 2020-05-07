@@ -90,6 +90,7 @@ CREATE TABLE grupo(
     clave VARCHAR(25) NOT NULL UNIQUE,
     ciclo VARCHAR(6) NOT NULL,
     idtest INT,
+    estado ENUM('Habilitado','Inhabilitado'),
     FOREIGN KEY (idmateria) REFERENCES materia(idmateria),
     FOREIGN KEY (idinstructor) REFERENCES usuario(idusuario),
     FOREIGN KEY (idcatedratico) REFERENCES usuario(idusuario),

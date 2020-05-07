@@ -9,7 +9,7 @@
     <property name="User" value="eval"/>
     <property name="Password" value="Eval20191Nstructores"/>-->
     <!--<property name="URL" value="jdbc:mysql://localhost:3307/evaluacion_instructores"/>-->
-    <property name="URL" value="jdbc:mysql://localhost:3306/evaluacion_instructores"/>
+    <property name="URL" value="jdbc:mysql://localhost:3306/evaluacion_instructores?useSSL=false"/>
     <property name="User" value="root"/>
     <property name="Password" value="admin"/>
   </jdbc-connection-pool>
