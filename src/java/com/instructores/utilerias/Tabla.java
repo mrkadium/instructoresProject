@@ -9,6 +9,7 @@ public class Tabla {
     private String[] cabeceras; 
     private int[] anchocolumnas;
     private String[][] rs;
+    private int cantidad_registros = 0;
     
     public static final class ICON {
         public static final String VER_MAS = "<i title='Ver más' class=\"fas fa-folder-open\"></i>";
@@ -55,6 +56,8 @@ public class Tabla {
     private boolean imprimible;
     private String paginaImprimible;
     private String iconoImprimible;
+    private Integer limiteInferior;
+    private Integer limiteSuperior;
             
     public Tabla(String[][] rs, String ancho, String estilo,int alineacion,String[] cabeceras){
        this.rs = rs;
@@ -172,11 +175,14 @@ public class Tabla {
         String[][] rst = rs;        
         numeroColumnas = rst.length;  
         String Tabla = "";
-        int k=0;
+        
+        int k = limiteInferior != null ? limiteInferior - 1 : 0;
+        int end = limiteSuperior != null ? limiteSuperior : rst[0].length;
+        
         Tabla += "<tbody>";      
         boolean sw = false;        
         try{
-        while (k<rst[0].length){             
+        while (k<end){             
             sw=!sw;
             String color_columna;
             if (sw)
@@ -258,6 +264,7 @@ public class Tabla {
            k++;
         }
         Tabla += "</tbody>"; 
+        cantidad_registros = k;
         }catch(Exception e){
             Tabla = e.getMessage();
         }
@@ -468,6 +475,18 @@ public class Tabla {
 
     public void setCabeceraImprimible(String cabeceraImprimible) {
         this.cabeceraImprimible = cabeceraImprimible;
+    }
+    
+    public int getCantidadRegistros(){
+        return cantidad_registros;
+    }
+    
+    public void setLimiteInferior(Integer limiteInferior){
+        this.limiteInferior = limiteInferior;
+    }
+    
+    public void setLimiteSuperior(Integer limiteSuperior){
+        this.limiteSuperior = limiteSuperior;
     }
     
 }

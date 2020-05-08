@@ -28,11 +28,27 @@
                     <input type="reset" id="reset"value="Quitar filtro">
                 </form>
             </div>
+            <div class="results">
+                <div class="results__info">
+                    <p>Resultados: <span>${pag.getCurrentLowerLimit()} - ${pag.getCurrentUpperLimit()}</span></p>
+                </div>
+                <div class="results__pagination">
+                    <p>Página:</p>
+                    <button class="prev" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Materias?pag_number=${pag.getPrevPage()}')">&lt;</button>
+                    <span>${pag.getCurrentPage()}/${pag.getTotalPages()}</span>
+                    <button class="next" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Materias?pag_number=${pag.getNextPage()}')">&gt;</button>
+                </div>
+            </div>
            <div class="tablas">
                 ${tabla}
             </div>
         </div>
     </div>
 </main>
+<script>
+    function abrirVentana(URL){
+        window.open(URL,"_self","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
+    }
+</script>
 
 <%@include file="../jsp/_footer.jsp"%>

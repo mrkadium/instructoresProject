@@ -3,6 +3,7 @@ import com.instructores.entidad.*;
 import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
+import com.instructores.utilerias.Pagination;
 import com.instructores.utilerias.Tabla;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,9 +56,15 @@ public class Materias extends HttpServlet {
                     materias = Operaciones.consultar(sql, null);
                 }
                 
+                
+                Pagination p = new Pagination(materias[0].length, 10, request);
+                request.setAttribute("pag", p);
+                
+                
                 String sqlcarrera = "select * from carrera";
                 List<Carrera> listaCarreras = new ArrayList();
                 String[][] rs = Operaciones.consultar(sqlcarrera, new ArrayList());
+                
                 for(int i=0; i<rs[0].length; i++){
                     Carrera c = new Carrera(Integer.parseInt(rs[0][i]), rs[1][i], Integer.parseInt(rs[2][i]), rs[3][i]);
                     listaCarreras.add(c);
@@ -71,6 +78,8 @@ public class Materias extends HttpServlet {
                 "Carrera"
                 };                
                 Tabla tab = new Tabla(materias,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
+                tab.setLimiteInferior(p.getCurrentLowerLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 tab.setEliminable(true);
                 tab.setModificable(true);
                 tab.setPageContext(request.getContextPath());
@@ -80,9 +89,10 @@ public class Materias extends HttpServlet {
                 tab.setIconoModificable(Tabla.ICON.MODIFICAR);
                 tab.setIconoEliminable(Tabla.ICON.ELIMINAR);
                 tab.setColumnasSeleccionables(new int[]{1});
-                tab.setPie("Resultado materias");
-                
+                tab.setPie("Resultado materias");                
                 String tabla01 = tab.getTabla();
+                
+                
                 request.setAttribute("tabla", tabla01);
                 request.setAttribute("valor", request.getParameter("txtBusqueda"));
                 request.getRequestDispatcher("materias/materias_consulta.jsp").forward(request, response);

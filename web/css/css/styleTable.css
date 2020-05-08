@@ -80,6 +80,60 @@ main .fondo{
 .header #buscar:focus{
     box-shadow: 0 0 5px rgba(30, 143, 255, 0.8);
 }
+
+
+.results{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    color: rgb(150, 150, 150);
+    font-weight: bold;
+}
+.results__info,
+.results__pagination{
+    align-self: center;
+    justify-self: center;
+}
+.results__info p span{
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(97, 206, 97);
+    color: white;
+}
+.results__pagination p{
+    display: inline;
+    margin-right: 10px;
+}
+.results__pagination span{
+    letter-spacing: 2px;
+}
+.results__pagination .prev,
+.results__pagination .next{
+    margin: 0;
+    padding: 5px;
+    border: 0;
+    font-weight: bold;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid rgb(97, 206, 97);
+    background-color: white;
+    color: rgb(97, 206, 97);
+    cursor: pointer;
+
+    transition: background-color .2s ease;
+}
+.results__pagination .prev{    
+    border-radius: 5px 0 0 5px;
+}
+.results__pagination .prev:hover,
+.results__pagination .next:hover{
+    background-color: rgb(97, 206, 97);
+    color: white;
+}
+
+
 .tablas{
     width: 100%;
     overflow-x: scroll;
