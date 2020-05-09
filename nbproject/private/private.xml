@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/jsp/resultados.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/grupos/grupos_consulta.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/src/java/com/instructores/control/Grupos.java</file>
+            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/src/java/com/instructores/utilerias/Pagination.java</file>
+            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/src/java/com/instructores/control/Materias.java</file>
+            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/materias/materias_consulta.jsp</file>
+            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/css/css/styleTable.css</file>
         </group>
     </open-files>
 </project-private>

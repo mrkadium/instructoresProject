@@ -13,6 +13,26 @@
     margin-bottom: 40px;
     text-align: center;
 }
+#gen_pwd{
+    display: block;
+    width: 100%;
+    background-color: rgb(97, 206, 97);
+    color: white;
+    border: 2px solid rgb(230,230,230);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color .2s ease,
+                color .2s ease,
+                border .2s ease;
+}
+#gen_pwd:hover{
+    color: rgb(97, 206, 97);
+    background-color: white;
+    border: 2px solid rgb(97, 206, 97);
+}
 .formulario [type="text"], .formulario select{
     height: 35px;
     text-align: center;
@@ -122,5 +142,9 @@
     }
     .formulario div.submit{
         justify-content: flex-start;
+    }
+    #gen_pwd{
+        display: inline-block;
+        width: unset;
     }
 }
