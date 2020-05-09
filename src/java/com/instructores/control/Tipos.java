@@ -4,6 +4,7 @@ import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
 import com.instructores.utilerias.Tabla;
+import com.instructores.utilerias.Tabla.ICON;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -52,7 +53,8 @@ public class Tipos extends HttpServlet {
                 //declaracion de cabeceras a usar en la tabla HTML
                 String[] cabeceras = new String[]{
                 "ID Tipo",
-                "Tipo"
+                "Tipo",
+                "Tipo input"
                 };
                 //variable de tipo Tabla para generar la Tabla HTML
                 Tabla tab = new Tabla(tipos, //array que contiene los datos
@@ -73,8 +75,8 @@ public class Tipos extends HttpServlet {
                 //pagina encargada de seleccion para operaciones
                 tab.setPaginaSeleccionable("/Tipos?accion=modificar");
                 //icono para modificar y eliminar
-                tab.setIconoModificable("/iconos/edit.png");
-                tab.setIconoEliminable("/iconos/delete.png");
+                tab.setIconoModificable(ICON.MODIFICAR);
+                tab.setIconoEliminable(ICON.ELIMINAR);
                 //columnas seleccionables
                 tab.setColumnasSeleccionables(new int[]{1});
                 //pie de tabla
