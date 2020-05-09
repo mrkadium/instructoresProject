@@ -36,7 +36,8 @@
                 </div>
                 <div>
                     <label for="txtClave">Clave:</label>
-                    <input type="text" id="txtClave" name="txtClave" value="${grupo.clave}" readonly/>
+                    <input type="text" class="gen_pwd_out" required id="txtClave" name="txtClave" value="${grupo.clave}" />
+                    <button id="gen_pwd">Generar contraseña</button>
                 </div>
                 <div>
                     <label for="txtCiclo">Ciclo:</label>
