@@ -17,12 +17,20 @@
         </div>
         <div class="results">
             <form class="results__filter" action="">
-                <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">
-                <select name="" id="category" title="Ciclo">
+                <input type="text" id="buscar" oninput="hideRows(this, 'Ciclo', false)" autocomplete="off" placeholder="Buscar...">
+                <select name="" id="category" onchange="hideRows(this, 'Ciclo')" title="Ciclo">
+                    <option value="0">-- Filtrar por ciclo --</option>
                     <c:forEach var="c" items="${Ciclos}">
                         <option value="${c}">${c}</option>
                     </c:forEach>
                 </select>
+                <select name="" id="category" onchange="hideRows(this, 'Instructor')" title="Instructor">
+                    <option value="0">-- Filtrar por instructor --</option>
+                    <c:forEach var="i" items="${Instructores}">
+                        <option value="${i}">${i}</option>
+                    </c:forEach>
+                </select>
+                <input onclick="clear()" type="reset" id="reset"value="Quitar filtro">
             </form>
             <div class="results__info">
                 <p>Resultados</p>
@@ -30,9 +38,9 @@
             </div>
             <div class="results__pagination">
                 <p>Página</p>
-                <button class="prev" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Facultades?pag_number=${pag.getPrevPage()}')">&lt;</button>
+                <button class="prev" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Principal?accion=resultados&pag_number=${pag.getPrevPage()}')">&lt;</button>
                 <span>${pag.getCurrentPage()}/${pag.getTotalPages()}</span>
-                <button class="next" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Facultades?pag_number=${pag.getNextPage()}')">&gt;</button>
+                <button class="next" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Principal?accion=resultados&pag_number=${pag.getNextPage()}')">&gt;</button>
             </div>
         </div>
         <div class="tablas">
@@ -40,6 +48,7 @@
         </div>        
     </div>
 </main>
+<script src="js/table_search.js"></script>
 <script>
     function abrirVentana(URL){
         window.open(URL);

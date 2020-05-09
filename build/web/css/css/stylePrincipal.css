@@ -208,6 +208,9 @@ footer span{
     color: rgb(97, 206, 97);
 }
 
+.hide{
+    display: none;
+}
 
 
 @media only screen and (max-height: 400px){    

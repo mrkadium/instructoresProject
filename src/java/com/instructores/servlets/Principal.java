@@ -6,6 +6,7 @@ import com.instructores.control.Grupos;
 import com.instructores.entidad.*;
 import com.instructores.operaciones.Operaciones;
 import com.instructores.utilerias.Hash;
+import com.instructores.utilerias.Pagination;
 import com.instructores.utilerias.Tabla;
 import com.instructores.viewmodels.ViewModelGrupo;
 import com.instructores.viewmodels.ViewModelInstructor;
@@ -465,6 +466,16 @@ public class Principal extends HttpServlet {
                 
                 String[][] grupos = Operaciones.consultar(sql, params);
                 
+                Pagination p = new Pagination(grupos[0].length, 10, request);
+                request.setAttribute("pag", p);
+                
+                List<String> instructores = new ArrayList();
+                for(int i=0; i<grupos[3].length; i++){
+                    if(!instructores.contains(grupos[3][i]))
+                        instructores.add(grupos[3][i]);
+                }
+                request.setAttribute("Instructores", instructores);
+                
                 String[] cabeceras = new String[]{
                 "ID Grupo",
                 "Materia",
@@ -479,6 +490,8 @@ public class Principal extends HttpServlet {
                 };
                 
                 Tabla tab = new Tabla(grupos,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
+                tab.setLimiteInferior(p.getCurrentLowerLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 tab.setModificable(true);
                 tab.setPaginaModificable("/Principal?accion=grupo");
                 tab.setIconoModificable(Tabla.ICON.VER_MAS);
