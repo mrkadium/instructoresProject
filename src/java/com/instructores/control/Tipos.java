@@ -3,6 +3,7 @@ import com.instructores.entidad.*;
 import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
+import com.instructores.utilerias.Pagination;
 import com.instructores.utilerias.Tabla;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,6 +50,12 @@ public class Tipos extends HttpServlet {
                 } else {
                     tipos = Operaciones.consultar(sql, null);
                 }
+                
+                
+                Pagination p = new Pagination(tipos[0].length, 10, request);
+                request.setAttribute("pag", p);
+                
+                
                 //declaracion de cabeceras a usar en la tabla HTML
                 String[] cabeceras = new String[]{
                 "ID Tipo",
@@ -60,6 +67,8 @@ public class Tipos extends HttpServlet {
                 Tabla.STYLE.TABLE01, //estilo de la tabla
                 Tabla.ALIGN.LEFT, // alineacion de la tabla
                 cabeceras); //array con las cabeceras de la tabla
+                tab.setLimiteInferior(p.getCurrentLowerLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 //boton eliminar
                 tab.setEliminable(true);
                 //boton actualizar
