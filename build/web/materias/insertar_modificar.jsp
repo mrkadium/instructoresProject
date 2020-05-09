@@ -14,7 +14,8 @@
                 </div>
                 <div>
                     <label for="txtMateria">Nombre materia:</label>
-                    <input type="text" class="input-largo" required id="txtMateria" name="txtMateria" value="${materia.materia}" />
+                    <input type="text" class="input-largo" required id="gen_pwd_out" name="txtMateria" value="${materia.materia}" />
+                    <button id="gen_pwd">Generar contraseña</button>
                 </div>
                 <div>
                     <label for="txtAlias">Alias:</label>

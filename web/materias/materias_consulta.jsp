@@ -46,10 +46,10 @@
         <!--</div>-->
     </div>
 </main>
-<script>
+<!--<script>
     function abrirVentana(URL){
         window.open(URL,"_self","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
     }
-</script>
+</script>-->
 
 <%@include file="../jsp/_footer.jsp"%>
