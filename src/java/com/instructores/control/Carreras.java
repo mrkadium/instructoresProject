@@ -3,6 +3,7 @@ import com.instructores.entidad.*;
 import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
+import com.instructores.utilerias.Pagination;
 import com.instructores.utilerias.Tabla;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -54,6 +55,13 @@ public class Carreras extends HttpServlet {
                 } else {
                     carreras = Operaciones.consultar(sql, null);
                 }
+                
+                
+                
+                Pagination p = new Pagination(carreras[0].length, 10, request);
+                request.setAttribute("pag", p);
+                
+                
                 //declaracion de cabeceras a usar en la tabla HTML
                 String[] cabeceras = new String[]{
                 "ID Carrera",
@@ -67,6 +75,8 @@ public class Carreras extends HttpServlet {
                 Tabla.STYLE.TABLE01, //estilo de la tabla
                 Tabla.ALIGN.LEFT, // alineacion de la tabla
                 cabeceras); //array con las cabeceras de la tabla
+                tab.setLimiteInferior(p.getCurrentLowerLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 //boton eliminar
                 tab.setEliminable(true);
                 //boton actualizar
@@ -93,8 +103,8 @@ public class Carreras extends HttpServlet {
                 List<Facultad> listaFacultades = new ArrayList();
                 String[][] rs = Operaciones.consultar(sqlfacultad, new ArrayList());
                 for(int i=0; i<rs[0].length; i++){
-                    Facultad p = new Facultad(Integer.parseInt(rs[0][i]), rs[1][i], rs[2][i], Integer.parseInt(rs[3][i]));
-                    listaFacultades.add(p);
+                    Facultad f = new Facultad(Integer.parseInt(rs[0][i]), rs[1][i], rs[2][i], Integer.parseInt(rs[3][i]));
+                    listaFacultades.add(f);
                 }
                 request.setAttribute("Facultades", listaFacultades); 
                 
