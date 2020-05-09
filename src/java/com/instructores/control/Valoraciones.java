@@ -4,6 +4,7 @@ import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
 import com.instructores.utilerias.Tabla;
+import com.instructores.utilerias.Tabla.ICON;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -74,8 +75,8 @@ public class Valoraciones extends HttpServlet {
                 //pagina encargada de seleccion para operaciones
                 tab.setPaginaSeleccionable("/Valoraciones?accion=modificar");
                 //icono para modificar y eliminar
-                tab.setIconoModificable("/iconos/edit.png");
-                tab.setIconoEliminable("/iconos/delete.png");
+                tab.setIconoModificable(ICON.MODIFICAR);
+                tab.setIconoEliminable(ICON.ELIMINAR);
                 //columnas seleccionables
                 tab.setColumnasSeleccionables(new int[]{1});
                 //pie de tabla
