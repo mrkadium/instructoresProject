@@ -3,6 +3,7 @@ import com.instructores.entidad.*;
 import com.instructores.conexion.Conexion;
 import com.instructores.conexion.ConexionPool;
 import com.instructores.operaciones.Operaciones;
+import com.instructores.utilerias.Pagination;
 import com.instructores.utilerias.Tabla;
 import com.instructores.viewmodels.ViewModelMenu;
 import java.io.IOException;
@@ -64,6 +65,10 @@ public class Menus extends HttpServlet {
                 }
                 
                 
+                Pagination p = new Pagination(menus[0].length, 10, request);
+                request.setAttribute("pag", p);
+                
+                
                 String sqlmenu = "select * from menu where idmenu in (select distinct idpadre from menu)";
                 List<Menu> listaMenus = new ArrayList();
                 String[][] rs = Operaciones.consultar(sqlmenu, new ArrayList());
@@ -90,6 +95,8 @@ public class Menus extends HttpServlet {
                 Tabla.STYLE.TABLE01, //estilo de la tabla
                 Tabla.ALIGN.LEFT, // alineacion de la tabla
                 cabeceras); //array con las cabeceras de la tabla
+                tab.setLimiteInferior(p.getCurrentLowerLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 //boton eliminar
                 tab.setEliminable(true);
                 //boton actualizar
