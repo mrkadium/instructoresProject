@@ -1,5 +1,5 @@
 const button_gen_pwd = document.querySelector("#gen_pwd");
-const gen_pwd_out = document.querySelector('#gen_pwd_out');
+const gen_pwd_out = document.querySelector('.gen_pwd_out');
 
 // const randonFunc = {
 //     lower: getRandomLower,
