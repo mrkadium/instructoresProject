@@ -22,11 +22,13 @@ public class LoginFilter implements Filter {
     
     private ServletContext context;
     
+    @Override
     public void init(FilterConfig filterConfig) {        
         this.context = filterConfig.getServletContext();
         this.context.log("LoginFilter initialized");
     }
     
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         try{
             Conexion con = new ConexionPool();
