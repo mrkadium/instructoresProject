@@ -174,15 +174,18 @@ public class Login extends HttpServlet {
             }else{
                 //OBTENEMOS LOS DATOS DE LA TABLA 'GRUPO' Y LOS ALMACENAMOS EN EL VIEWMODEL
                 HttpSession sesion = request.getSession();
-                String sql = "select\n" +
-                            "	idgrupo,\n" +
-                            "    (select m.materia from materia m where m.idmateria = g.idmateria) as materia,\n" +
-                            "    (select concat(i.nombres, ' ', i.apellidos) from usuario i where i.idusuario = g.idinstructor) as instructor,\n" +
-                            "    (select concat(c.nombres, ' ', c.apellidos) from usuario c where c.idusuario = g.idcatedratico) as catedratico,\n" +
-                            "    numero_grupo,\n" +
-                            "    ciclo,\n" +
-                            "    clave, idtest, estado\n" +
-                            "from grupo g";
+                String sql = 
+                    "SELECT\n" +
+                    "	a.idgrupo, b.materia,\n" +
+                    "    CONCAT(c.nombres, ' ', c.apellidos) AS instructor,\n" +
+                    "    CONCAT(d.nombres, ' ', d.apellidos) AS catedratico,\n" +
+                    "    a.numero_grupo, a.ciclo, a.clave, a.idtest, a.estado\n" +
+                    "FROM grupo a, materia b, usuario c, usuario d\n" +
+                    "WHERE\n" +
+                    "	a.idmateria = b.idmateria\n" +
+                    "    AND a.idinstructor = c.idusuario\n" +
+                    "    AND a.idcatedratico = d.idusuario\n" +
+                    ";";
                 List<Object> param = new ArrayList();
                 String[][] rs = Operaciones.consultar(sql, param);
                 Grupo g = new Grupo();
