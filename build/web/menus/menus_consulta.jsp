@@ -20,8 +20,8 @@
             </div>
             <div class="results">
                 <form class="results__filter" action="">
-                    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">
-                    <select name="" id="category" title="Padre"> 
+                    <input type="text" id="buscar" oninput="hideRows(this, 'Ciclo', false)" autocomplete="off" placeholder="Buscar...">
+                    <select name="" id="category" onchange="hideRows(this, 'Rol')" title="Padre"> 
                         <option value="0">-- Filtrar por rol --</option>
                         <option value="null">Sin padre</option>
                         <c:forEach var="m" items="${Menus}">

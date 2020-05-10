@@ -20,7 +20,7 @@
             </div>
             <div class="results">
                 <form class="results__filter" action="">
-                    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">
+                    <input type="text" id="buscar" oninput="hideRows(this, 'Ciclo', false)" autocomplete="off" placeholder="Buscar...">
                 </form>
                 <div class="results__total">
                     <p>Resultados</p>

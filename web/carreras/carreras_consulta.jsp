@@ -23,8 +23,8 @@
             </div>
             <div class="results">
                 <form class="results__filter" action="">
-                    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">
-                    <select name="" id="category" title="Facultad"> 
+                    <input type="text" id="buscar" oninput="hideRows(this, 'Ciclo', false)" autocomplete="off" placeholder="Buscar...">
+                    <select name="" id="category" onchange="hideRows(this, 'Facultad')" title="Facultad"> 
                         <option value="0">-- Filtrar por facultad --</option>
                         <c:forEach var="f" items="${Facultades}">
                             <option value="${f.facultad}">${f.facultad}</option>
