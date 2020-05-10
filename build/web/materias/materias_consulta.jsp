@@ -30,7 +30,7 @@
                     <input type="reset" id="reset"value="Quitar filtro">
                 </form>
                 <div class="results__total">
-                    <p>Resultados totales</p>
+                    <p>Resultados</p>
                     <span>${pag.getTotalRecords()}</span>
                 </div>
                 <div class="results__info">
