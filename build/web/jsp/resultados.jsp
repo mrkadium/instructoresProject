@@ -52,7 +52,6 @@
         </div>        
     </div>
 </main>
-<script src="js/table_search.js"></script>
 <script>
     function abrirVentana(URL){
         window.open(URL);
