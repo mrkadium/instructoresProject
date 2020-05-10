@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/jsp/_head.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/jsp/_footer.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/js/new.js</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/jsp/resultados.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/carreras/carreras_consulta.jsp</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/web/css/css/stylePrincipal.css</file>
-            <file>file:/C:/Programas/NetbeansProjects/InstructoresProject/src/java/com/instructores/servlets/Principal.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -29,8 +29,12 @@
                     </select>
                     <input type="reset" id="reset"value="Quitar filtro">
                 </form>
+                <div class="results__total">
+                    <p>Resultados totales</p>
+                    <span>${pag.getTotalRecords()}</span>
+                </div>
                 <div class="results__info">
-                    <p>Resultados</p>
+                    <p>Mostrados</p>
                     <span>${pag.getCurrentLowerLimit()} - ${pag.getCurrentUpperLimit()}</span>
                 </div>
                 <div class="results__pagination">

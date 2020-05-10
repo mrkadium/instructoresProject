@@ -51,4 +51,8 @@ public class Pagination {
         return current_lower_limit;
     }
     
+    public int getTotalRecords(){
+        return total_records;
+    }
+    
 }
