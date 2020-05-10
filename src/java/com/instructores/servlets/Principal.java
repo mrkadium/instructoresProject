@@ -102,7 +102,7 @@ public class Principal extends HttpServlet {
             Operaciones.iniciarTransaccion();
             
             int idrol = (int)request.getSession().getAttribute("Rol");
-            String sql = "select idusuario from usuario where idrol in (select idrol from rol where rol = 'admin')";
+            String sql = "SELECT idusuario FROM usuario WHERE idrol IN (SELECT idrol FROM rol WHERE rol = 'admin')";
             out.println(sql);
             String[][] rsAdmins = Operaciones.consultar(sql, new ArrayList());
             boolean encontrado = false;
@@ -173,7 +173,7 @@ public class Principal extends HttpServlet {
                 request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);
             }else{
                 //si no lo son, se tendrá que actualizar
-                String sql = "update usuario set usuario = ?, clave = ? where idusuario = ?";
+                String sql = "UPDATE usuario SET usuario = ?, clave = ? WHERE idusuario = ?";
                 PreparedStatement st = conn.getConexion().prepareStatement(sql);
                 st.setString(1, usuario);
                 st.setInt(3, u.getIdusuario());
