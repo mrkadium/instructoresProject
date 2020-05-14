@@ -425,7 +425,8 @@ public class Principal extends HttpServlet {
                         "    CONCAT(c.nombres,' ',c.apellidos) AS instructor,\n" +
                         "    CONCAT(d.nombres,' ',d.apellidos) AS catedratico,\n" +
                         "    a.numero_grupo, a.clave, a.ciclo,\n" +
-                        "    IF(a.idtest IS NULL,'-',a.idtest) as idtest, a.estado\n" +
+                        "    IF(a.idtest IS NULL,'-',a.idtest) as idtest, a.estado,\n" +
+                        "   (SELECT COUNT(*) FROM evaluacion x WHERE x.idgrupo = a.idgrupo) AS cant_ev -- NUEVO\n" +
                         "FROM \n" +
                         "	grupo a, materia b, usuario c, usuario d, facultad e, carrera f\n" +
                         "WHERE\n" +
@@ -486,7 +487,8 @@ public class Principal extends HttpServlet {
                 "Clave",
                 "Ciclo",
                 "ID Test",
-                "Estado"
+                "Estado",
+                "Cant. Ev."
                 };
                 
                 Tabla tab = new Tabla(grupos,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
