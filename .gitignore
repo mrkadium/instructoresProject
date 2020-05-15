@@ -1,0 +1,8 @@
+#Build folder
+build/
+
+#Distribution (dist) folder
+dist/
+
+#NetBeans Project private metatada
+nbproject/private/
