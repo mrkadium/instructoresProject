@@ -1,1 +1,5 @@
-build/web/css/css
+#Si ya está "trackeado", hay que
+#borrar la caché para esa carpeta
+#Se agrega -r cuando ya hay más commits
+#git rm --cached -r build
+build
