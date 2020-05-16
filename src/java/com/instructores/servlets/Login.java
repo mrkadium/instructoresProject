@@ -22,37 +22,6 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, Exception {        
-        String accion = request.getParameter("accion");
-        HttpSession session = request.getSession();
-        if(accion == null){
-            request.getSession().removeAttribute("error");
-            request.removeAttribute("error");
-            request.getSession().removeAttribute("resultado");
-            request.removeAttribute("resultado");
-            request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
-        }else{
-            switch(accion){
-                case "admin":
-                    request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);
-                break;
-                case "loginAdmin":
-                    iniciarSesionAdmin(request, response);
-                break;
-                case "loginEst":
-                    iniciarSesionEst(request, response);
-                break;
-                case "logout":
-                    logout(request, response);
-                break;
-                case "enviarTest":
-                    enviarTest(request, response);
-                break;
-            }
-        }
-    }
     
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession sesion = request.getSession();

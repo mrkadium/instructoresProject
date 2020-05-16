@@ -19,8 +19,9 @@
     <link rel="icon" href="img/Logo-USO.ico">
     <link rel="stylesheet" href="css/css/stylePrincipal.css">
     <link rel="stylesheet" href="css/css/styleTable.css">
-    <link rel="stylesheet" href="css/css/styleGrupo.css">
-    <link rel="stylesheet" href="css/css/styleTest.css">
+    <!--<link rel="stylesheet" href="css/css/styleGrupo.css">-->
+    <!--<link rel="stylesheet" href="css/css/styleTest.css">-->
+    <link rel="stylesheet" href="css/css/new_stylesTest.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/main.js"></script>
