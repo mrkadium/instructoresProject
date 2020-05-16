@@ -106,8 +106,11 @@
                         <textarea name="observacion" id="observacion" cols="30" rows="5"></textarea>
                     </div>
                     <input type="submit" value="Enviar">
-                </form>                
-            
+                </form>              
+            <div class="mensaje">
+                <p>Para una mejor experiencia, ponga su dispositivo en modo horizontal</p>
+                <a href="">Entendido</a>
+            </div>
             <a href="/InstructoresProject/Login?accion=logout" class="cancelar">Cancelar</a>
         </div>
     </main>
