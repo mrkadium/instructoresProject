@@ -13,6 +13,17 @@
     margin-bottom: 40px;
     text-align: center;
 }
+.formulario [type="text"], .formulario select, .formulario .observacion{
+    height: 35px;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid rgb(230,230,230);
+    outline: none;
+    font-size: 16px;
+    color: rgb(100,100,100);
+    width: 60vw;
+    padding: 0 10px;
+}
 #gen_pwd{
     display: block;
     width: 100%;
@@ -33,16 +44,6 @@
     background-color: white;
     border: 2px solid rgb(97, 206, 97);
 }
-.formulario [type="text"], .formulario select{
-    height: 35px;
-    text-align: center;
-    border-radius: 10px;
-    border: 3px solid rgb(230,230,230);
-    outline: none;
-    font-size: 16px;
-    color: rgb(100,100,100);
-    width: 60vw;
-}
 .formulario .input-largo{
     width: 60vw;
 }
@@ -53,7 +54,13 @@
     background-color: white;
     color: rgb(100,100,100);
 }
-.formulario [type="text"]:focus, .formulario select:focus{
+.formulario .observacion{
+    height: 100px;
+}
+.formulario [type="text"]:focus, 
+.formulario select:focus, 
+.formulario .observacion:focus, 
+.formulario select:focus{
     box-shadow: 0 0 5px rgba(30, 143, 255, 0.8);
 }
 .formulario form .puntos{
@@ -115,16 +122,19 @@
     color: rgb(97, 206, 97);
     text-align: center;
 }
-
+@media only screen and (min-width: 600px){
+    .table{
+        grid-column: unset;
+    }
+}
 @media only screen and (min-width: 768px){
     .formulario form{
         align-items: flex-start;
         flex-direction: column;
     }
-    .formulario [type="text"], .formulario select{
+    .formulario [type="text"], .formulario select, .formulario .observacion{
         width: 40vw;
         text-align: left;
-        padding: 0 10px;
     }
     .formulario .input-largo{
         width: 60vw;
@@ -146,5 +156,13 @@
     #gen_pwd{
         display: inline-block;
         width: unset;
+    }
+    .table{
+        grid-column: unset;
+    }
+}
+@media only screen and (min-width: 1000px){
+    .table{
+        grid-column: unset;
     }
 }

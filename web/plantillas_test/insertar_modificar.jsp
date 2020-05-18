@@ -18,7 +18,7 @@
                 </div>                
                 <div class="ob">
                     <label for="observacion">Observación [opcional]:</label>
-                    <textarea name="observacion" id="observacion" cols="30" rows="5"></textarea>
+                    <textarea name="observacion" id="observacion" class="observacion" cols="30" rows="5"></textarea>
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
