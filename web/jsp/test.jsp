@@ -23,6 +23,7 @@
     <!--<link rel="stylesheet" href="css/css/styleTest.css">-->
     <link rel="stylesheet" href="css/css/new_stylesTest.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/css/modal.css">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/main.js"></script>
     <title>Evaluación</title>
@@ -106,10 +107,12 @@
                         <textarea name="observacion" id="observacion" cols="30" rows="5"></textarea>
                     </div>
                     <input type="submit" value="Enviar">
-                </form>              
-            <div class="mensaje">
-                <p>Para una mejor experiencia, ponga su dispositivo en modo horizontal</p>
-                <a href="">Entendido</a>
+                </form>                          
+            <div class="modal hide__modal">
+                <div class="modal__content">
+                    <p class="modal__msg"></p>
+                    <button class="modal__btn"></button>
+                </div>
             </div>
             <a href="/InstructoresProject/Login?accion=logout" class="cancelar">Cancelar</a>
         </div>
@@ -183,35 +186,51 @@
         <p>Desarrollador: <span>Mario Adalberto Rivera Olivo</span></p>
     </footer>
             
-    <script>
-        $(document).ready(function(){
-            var campo = $(".cuan");
-            campo.keyup(function(){
-                var nonum = false, vacio = false;
-                if(!jQuery.isNumeric(campo.val())){
-                    nonum = true;
-                }else{
-                    nonum = false;
-                }
-                if(campo.val() == ""){
-                    vacio = true;
-                }else{
-                    vacio = false;
-                }
-                if(nonum){
-                    campo.val("");
-                }else{
-                    if(campo.val() < 1 || campo.val() > 10){
-                        campo.val("");
-                    }
-                }
-            });
-            
-            $("form").submit(function(){
-                var value = $(".cuan").val();
-                $(".cuan").val(value+"@");
-            });
-        });
+    <script src="js/modal.js"></script>    
+    <script>            
+        // FUNCIÓN PARA DETECTAR SI ES UN MÓVIL
+        detectmob();
+        function detectmob() { 
+            if( navigator.userAgent.match(/Android/i)
+                || navigator.userAgent.match(/webOS/i)
+                || navigator.userAgent.match(/iPhone/i)
+                || navigator.userAgent.match(/iPad/i)
+                || navigator.userAgent.match(/iPod/i)
+                || navigator.userAgent.match(/BlackBerry/i)
+                || navigator.userAgent.match(/Windows Phone/i)
+            ){
+                // showMensaje();
+                showMessage('Para una mejor experiencia, ponga su dispositivo de manera horizontal','Entendido');
+            }
+        }
+//        $(document).ready(function(){
+//            var campo = $(".cuan");
+//            campo.keyup(function(){
+//                var nonum = false, vacio = false;
+//                if(!jQuery.isNumeric(campo.val())){
+//                    nonum = true;
+//                }else{
+//                    nonum = false;
+//                }
+//                if(campo.val() == ""){
+//                    vacio = true;
+//                }else{
+//                    vacio = false;
+//                }
+//                if(nonum){
+//                    campo.val("");
+//                }else{
+//                    if(campo.val() < 1 || campo.val() > 10){
+//                        campo.val("");
+//                    }
+//                }
+//            });
+//            
+//            $("form").submit(function(){
+//                var value = $(".cuan").val();
+//                $(".cuan").val(value+"@");
+//            });
+//        });
     </script>
 </body>
 </html>
