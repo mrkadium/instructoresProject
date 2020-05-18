@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
 <link rel='stylesheet' href='css/css/styleTable.css'>
-<link rel='stylesheet' href='css/css/styleConfiguracion.css'>
+<!--<link rel='stylesheet' href='css/css/styleConfiguracion.css'>-->
 <%@include file="../jsp/_nav.jsp"%>
     
 <main>
