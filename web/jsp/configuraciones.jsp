@@ -6,8 +6,8 @@
 <main>
     <div class="fondo">
         <div class="configuraciones">
-            <h1>Modificables <i class="fas fa-caret-down"></i></h1>
-            <ul class="hide">
+            <h1>Modificables <i class="fas fa-caret-up"></i></h1>
+            <ul class="">
                 <li><a href="${pageContext.servletContext.contextPath}/Carreras">Carreras</a></li>
                 <li><a href="${pageContext.servletContext.contextPath}/Facultades">Facultades</a></li>
                 <li><a href="${pageContext.servletContext.contextPath}/Grupos">Grupos</a></li>
@@ -16,13 +16,13 @@
             </ul>
         </div>
         <div class="configuraciones">
-            <h1>Plantillas <i class="fas fa-caret-down"></i></h1>
-            <ul class="hide">
+            <h1>Plantillas <i class="fas fa-caret-up"></i></h1>
+            <ul class="">
                 <li><a href="${pageContext.servletContext.contextPath}/Plantillas_test">Plantillas de test</a></li>
                 <li><a href="${pageContext.servletContext.contextPath}/Plantillas_literal">Plantillas de literal</a></li>
             </ul>
-            <h1>Gestionar tests <i class="fas fa-caret-down"></i></h1>
-            <ul class="hide">
+            <h1>Gestionar tests <i class="fas fa-caret-up"></i></h1>
+            <ul class="">
                 <li><a href="${pageContext.servletContext.contextPath}/Tests">Tests</a></li>
             </ul>
         </div>
