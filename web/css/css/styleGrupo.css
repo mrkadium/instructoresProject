@@ -1,5 +1,9 @@
-.hide{
-    display: none;
+main .fondo{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 .grupo-info{
     color: rgb(150,150,150);
@@ -7,6 +11,10 @@
     border-radius: 10px;
     padding: 20px 20px;
     margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .grupo-info h1{
     font-size: 18px;
@@ -58,12 +66,14 @@
 }
 
 .mostrar{
-    flex-basis: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    justify-self: end;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
-.mostrar label, .mostrar a{
+.mostrar label{
     color: rgb(97, 206, 97);
     text-align: center;
     margin: 5px;
@@ -74,9 +84,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
-    margin-top: 30px;
+    margin-top: 60px;
     color: rgb(100,100,100);
-    width: 90%;
 }
 .observaciones>p{
     flex-basis: 100%;
@@ -92,9 +101,8 @@
     border: 0;
     border-radius: 10px;
     padding: 20px;
-    padding-bottom: 30px;
     position: relative;
-    box-shadow: 3px 3px 5px rgba(207, 205, 205, 0.24);
+    box-shadow: 3px 3px 3px rgba(207, 205, 205, 0.24);
 }
 .observaciones .textarea:hover{
     /* overflow-y: scroll; */
@@ -112,6 +120,13 @@
     top: 0;
     left: 0;
 }
+.observaciones .textarea::after{
+    content: '2019';
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    font-size: 12px;
+}
 .observaciones .textarea:nth-child(even){
     /* background-color: rgb(230,230,230); */
 }
@@ -126,7 +141,18 @@
     display: none;
 }
 
+@media only screen and (min-width: 450px){
+    main .fondo{
+        grid-template-columns: auto;
+    }
+    .tablas{
+        grid-column: unset;
+    }
+}
 @media only screen and (min-width: 600px){
+    main .fondo{
+        grid-template-columns: auto;
+    }
     .observaciones .textarea{
         flex-basis: 45%;
     }
@@ -134,5 +160,14 @@
 @media only screen and (min-width: 768px){
     .observaciones .textarea{
         flex-basis: 30%;
+    }
+}
+@media only screen and (min-width: 1000px){
+    main .fondo{
+        grid-template-rows: unset;
+    }
+    .tablas{
+        grid-column: unset;
+        grid-row: unset;
     }
 }
