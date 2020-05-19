@@ -127,10 +127,8 @@ public class Login extends HttpServlet {
     
     private void iniciarSesionEst(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
-        String clave = request.getParameter("txtClave");
-        List<Grupo> grupos = new ArrayList();
-        PrintWriter out = response.getWriter();
-        if(clave == null){clave = "";}
+        String clave = request.getParameter("txtClave") != null ? request.getParameter("txtClave") : "";
+        boolean errorFound = false;
         try{
             Conexion con = new ConexionPool();
             con.conectar();
@@ -138,8 +136,8 @@ public class Login extends HttpServlet {
             Operaciones.iniciarTransaccion();
             
             if(con.getConexion() == null){
-                request.setAttribute("error", 1);
-                request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+                request.setAttribute("error", 0);
+                errorFound = true;
             }else{
                 //OBTENEMOS LOS DATOS DE LA TABLA 'GRUPO' Y LOS ALMACENAMOS EN EL VIEWMODEL
                 HttpSession sesion = request.getSession();
@@ -154,33 +152,24 @@ public class Login extends HttpServlet {
                     "	a.idmateria = b.idmateria\n" +
                     "    AND a.idinstructor = c.idusuario\n" +
                     "    AND a.idcatedratico = d.idusuario\n" +
+                    "   AND a.clave = ? \n" +
                     ";";
                 List<Object> param = new ArrayList();
+                param.add(clave);
                 String[][] rs = Operaciones.consultar(sql, param);
-                Grupo g = new Grupo();
                 ViewModelGrupo gr = new ViewModelGrupo();
-                
-                boolean encontrado = false;
-                for(int i=0; i<rs[0].length; i++){
-                    gr.setIdgrupo(Integer.parseInt(rs[0][i]));
-                    gr.setMateria(rs[1][i]);
-                    gr.setInstructor(rs[2][i]);
-                    gr.setCatedratico(rs[3][i]);
-                    gr.setNumero_grupo(rs[4][i]);
-                    gr.setCiclo(rs[5][i]);
-                    gr.setClave(rs[6][i]);
-                    if(rs[7][i] != null)
-                        gr.setIdtest(Integer.parseInt(rs[7][i]));
-                    gr.setEstado(rs[8][i]);
-                
-                // HACER COMPARACIÓN CON CLAVE ENTRANTE 
-                    if(gr.getClave().equals(clave)){
-                        encontrado = true;
-                        break;
-                    }
+                if(rs != null){
+                    gr.setIdgrupo(Integer.parseInt(rs[0][0]));
+                    gr.setMateria(rs[1][0]);
+                    gr.setInstructor(rs[2][0]);
+                    gr.setCatedratico(rs[3][0]);
+                    gr.setNumero_grupo(rs[4][0]);
+                    gr.setCiclo(rs[5][0]);
+                    gr.setClave(rs[6][0]);
+                    gr.setIdtest(rs[7][0] != null ? Integer.parseInt(rs[7][0]) : 0);
+                    gr.setEstado(rs[8][0]);
                 }
-                if(encontrado && gr.getIdtest() != null && gr.getEstado().equals("Habilitado")){
-//                if(encontrado && gr.getIdtest() != null){
+                if(rs != null && gr.getEstado().equals("Habilitado") && gr.getIdtest() != 0){
                     sesion.setAttribute("gr", gr);
                     
                     String sqlTipos = "select * from tipo";
@@ -216,33 +205,25 @@ public class Login extends HttpServlet {
                             getLiterales.add(lit);
                         }
                         sesion.setAttribute("literales", getLiterales);
-                        response.sendRedirect("Test");
-//                        request.getRequestDispatcher("jsp/test.jsp").forward(request, response);                    
+                        response.sendRedirect("Test");                   
                     }else{
                         request.setAttribute("error", 2);
                         Operaciones.rollback();
-                        request.getRequestDispatcher("jsp/index.jsp").forward(request, response);                        
+                        errorFound = true;
                     }
-                }else{
-                    if(!encontrado)
-                        request.setAttribute("error", 1);
-                    else if(!gr.getEstado().equals("Habilitado"))
-                        request.setAttribute("error", 5);
-                    else
-                        request.setAttribute("error", 2);
-                    
-                    Operaciones.rollback();
-                    request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
                 }
+                if(rs == null) {request.setAttribute("error", 1);errorFound = true;}
+                if(gr.getIdtest() == 0) {request.setAttribute("error", 2);errorFound = true;}
+                if(!gr.getEstado().equals("Habilitado")) {request.setAttribute("error", 5);errorFound = true;}
             }
             
             Operaciones.commit();
         }catch(Exception e){
             Operaciones.rollback();
+            errorFound = true;
             request.setAttribute("error", 0);
-            request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
-            out.println("Error: "+e.getMessage());
         }finally{
+            if(errorFound) request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
             Operaciones.cerrarConexion();
         }
     }
