@@ -163,56 +163,34 @@ public class Principal extends HttpServlet {
             Operaciones.iniciarTransaccion();
             
             String usuario = request.getParameter("txtUsuario");
-            String clave = request.getParameter("txtClave");
+            String clave = request.getParameter("txtClave") != null ? request.getParameter("txtClave") : "";
+            boolean updated = false;
 
             Usuario u = (Usuario)request.getSession().getAttribute("u");
             
-            //si son los mismos datos
-            if(usuario.equals(u.getUsuario()) && (clave.equals("") || u.getClave().equals(Hash.generarHash(clave, Hash.SHA256)))){
-                request.setAttribute("error", 3);
-                request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);
-            }else{
-                //si no lo son, se tendrá que actualizar
-                String sql = "UPDATE usuario SET usuario = ?, clave = ? WHERE idusuario = ?";
-                PreparedStatement st = conn.getConexion().prepareStatement(sql);
-                st.setString(1, usuario);
-                st.setInt(3, u.getIdusuario());
-                
-                if(clave.equals("")){
-                    clave = u.getClave();
-                    st.setString(2, clave);
-                }else{
-                    st.setString(2, Hash.generarHash(clave, Hash.SHA256));
-                }
-                if(usuario.equals("")){
-                    usuario = u.getUsuario();
-                }
-                
-                if(st.executeUpdate() == 0){
-                    request.setAttribute("error", 4);
-                    request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);
-                }
-            }
+            if(!u.getUsuario().equals(usuario)) {u.setUsuario(usuario); updated = true;}
+            if(!clave.isEmpty()) {u.setClave(Hash.generarHash(clave, Hash.SHA256)); updated = true;}
+            u = Operaciones.actualizar(u.getIdusuario(), u);
+            if(updated && u.getIdusuario() != 0) request.setAttribute("error", 4);
+            else request.setAttribute("error", 3);
+            request.getSession().invalidate();
             
-            Operaciones.commit();             
-            
-            } catch(Exception ex) {
+            Operaciones.commit();
+        } catch(Exception ex) {
             try {
                 Operaciones.rollback();
                 request.setAttribute("error", 3);
-                request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);   
             } catch (SQLException ex1) {
                 Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } finally {
             try {
                 Operaciones.cerrarConexion();
+                request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);   
             } catch (SQLException ex) {
                 Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        request.setAttribute("error", 4);
-        request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);   
+        } 
     }
     
     private void instructores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception{

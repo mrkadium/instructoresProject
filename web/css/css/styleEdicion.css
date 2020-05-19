@@ -1,12 +1,22 @@
+.fondo{
+    width: 100%;
+    max-width: 1000px;
+}
+.formulario{
+    width: 100%;
+}
 .formulario form{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column; */
+    /* align-items: start; */
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
 }
 .formulario form>div{
     margin-bottom: 20px;
+    width: 100%;
 }
 .formulario h2{
     color: rgb(150,150,150);
@@ -21,7 +31,7 @@
     outline: none;
     font-size: 16px;
     color: rgb(100,100,100);
-    width: 60vw;
+    width: 100%;
     padding: 0 10px;
 }
 #gen_pwd{
@@ -87,7 +97,7 @@
 }
 .formulario label{
     color: rgb(150,150,150);
-    text-align: center;
+    /* text-align: center; */
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
@@ -95,47 +105,106 @@
 }
 .formulario div.submit{
     margin-top: 30px;
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 .formulario [type="submit"]{
-    width: 30vw;
-    height: 40px;
+    /* height: 40px; */
     background: rgb(97, 206, 97);
     border: 3px solid rgb(230,230,230);
     border-radius: 10px;
     color: white;
     font-weight: bold;
     font-size: 16px;
+    padding: 12px 30px;
 }
 .formulario [type="submit"]:hover{
     background-color: green;
     cursor: pointer;
+    justify-self: center;
 }
 .formulario form span{
     color: rgb(97, 206, 97);
 }
 .formulario form p{
     margin: 20px 0;
-    width: 100%;
+    /* width: 100%; */
     color: rgb(97, 206, 97);
+    justify-self: center;
     text-align: center;
 }
+.formulario .side_checkbox{
+    cursor: pointer;
+    margin-top: 8px;
+    border: 2px solid rgb(230,230,230);
+    
+    /* Testing */
+    -webkit-appearance: none;
+    appearance: none;
+	background-color: #fafafa;
+	border: 2px solid rgb(230,230,230);
+    box-shadow: 
+        /* 0 1px 2px rgba(0,0,0,0.05),  */
+        inset 0px -15px 10px -12px rgba(0,0,0,0.01);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+.formulario .side_checkbox:active,
+.formulario .side_checkbox:checked:active{
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 
+                inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.formulario .side_checkbox:checked{
+    background-color: #e9ecee;
+	border: 2px solid rgb(207, 205, 205);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 
+                inset 0px -15px 10px -12px rgba(0,0,0,0.05), 
+                inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+.formulario .side_checkbox:checked::after{
+    content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #99a1a7;
+}
+.formulario label.side_checkbox__label{
+    display: inline;
+    font-weight: normal;
+    margin-left: 5px;
+    cursor: pointer;
+}
 @media only screen and (min-width: 600px){
+    main .fondo{
+        grid-template-columns: auto;
+    }
+    .formulario form{
+        justify-content: center;
+    }
+    .formulario form div{
+        width: 80%;
+    }
     .table{
         grid-column: unset;
     }
 }
-@media only screen and (min-width: 768px){
-    .formulario form{
+ @media only screen and (min-width: 768px){
+    /*.formulario form{
         align-items: flex-start;
         flex-direction: column;
     }
-    .formulario [type="text"], .formulario select, .formulario .observacion{
-        width: 40vw;
-        text-align: left;
+    .formulario .side_checkbox{
+        margin-left: 2px;
     }
+    .formulario [type="text"], .formulario select, .formulario .observacion{
+        /* width: 40vw; */
+        /* text-align: left; 
+    }*/
     .formulario .input-largo{
         width: 60vw;
     }
@@ -148,10 +217,11 @@
         font-size: 20px;
     }
     .formulario select{
-        width: 30vw;
+        /* width: 30vw; */
     }
     .formulario div.submit{
-        justify-content: flex-start;
+        /* width: 80%; */
+        /* justify-content: center; */
     }
     #gen_pwd{
         display: inline-block;

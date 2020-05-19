@@ -7,7 +7,7 @@
     <div class="fondo">
         <div class="formulario">
             <h1>Perfil</h1>
-            <form name="form_usuarios" action="${pageContext.servletContext.contextPath}/Principal?accion=actualizarUsuario">
+            <form name="form_usuarios" action="${pageContext.servletContext.contextPath}/Principal?accion=actualizarUsuario" method="POST">
                 <div>
                     <label for="txtIdusuario">ID Usuario:</label>
                     <input type="text" name="txtIdusuario" id="txtIdusuario" value="${usuario.idusuario}" readonly>
@@ -26,7 +26,9 @@
                 </div>
                 <div>
                     <label for="txtClave"><span>*</span>Clave:</label>
-                    <input type="text" name="txtClave" id="txtClave" autocomplete="off">
+                    <input type="text" name="txtClave" id="txtClave" autocomplete="off" disabled><br>
+                    <input type="checkbox" name="" class="side_checkbox" id="change_pwd">
+                    <label class="side_checkbox__label" for="change_pwd">Modificar</label>
                 </div>
                 <div class="submit">
                     <input type="submit" value="Guardar" name="" id="">
@@ -36,5 +38,14 @@
         </div>
     </div>
 </main>
+<script>
+    const change_pwd__textbox = change_pwd.previousElementSibling.previousElementSibling;
+    change_pwd.addEventListener('change',function(){
+        change_pwd.checked ? 
+        change_pwd__textbox.removeAttribute("disabled") : 
+        change_pwd__textbox.setAttribute("disabled", true);
+        change_pwd__textbox.focus();
+    });
+</script>
 
 <%@include file="../jsp/_footer.jsp"%>
