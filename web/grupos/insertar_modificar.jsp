@@ -47,7 +47,7 @@
                     <label for="txtIdtest">Test</label>
                     <input type="text" class="input-corto" required id="txtIdtest" readonly name="txtIdtest" value="${grupo.idtest}" />
                     <input type="text" class="input-largo" required id="txtCiclo_test" readonly name="txtCiclo_test" value="${t.ciclo}" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=tests');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a href="#" onclick="openWindow('${pageContext.servletContext.contextPath}/Grupos?accion=tests');" class="puntos"><i class="fas fa-search"></i></a>                    
                 </div>
                 <div>
                     <label for="cmbEstado">Estado</label>
@@ -64,8 +64,8 @@
     </div>
 </main>
 <script> 
-    function abrirVentana(URL){
-        window.open(URL,"ventana1","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
+    function openWindow(URL){
+        window.open(URL,"_blank","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
     }
     function setDataMateria(idmateria, materia) {
         document.getElementById("txtIdmateria").value = idmateria;

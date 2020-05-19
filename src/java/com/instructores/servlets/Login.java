@@ -211,10 +211,13 @@ public class Login extends HttpServlet {
                         Operaciones.rollback();
                         errorFound = true;
                     }
+                }else if(rs == null) {
+                    request.setAttribute("error", 1); 
+                    errorFound = true;
+                }else{
+                    if(gr.getIdtest() == 0) {request.setAttribute("error", 2); errorFound = true;}
+                    if(!gr.getEstado().equals("Habilitado")) {request.setAttribute("error", 5); errorFound = true;}
                 }
-                if(rs == null) {request.setAttribute("error", 1);errorFound = true;}
-                if(gr.getIdtest() == 0) {request.setAttribute("error", 2);errorFound = true;}
-                if(!gr.getEstado().equals("Habilitado")) {request.setAttribute("error", 5);errorFound = true;}
             }
             
             Operaciones.commit();
