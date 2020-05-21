@@ -53,7 +53,8 @@
                     <label for="cmbEstado">Estado</label>
                     <select name="cmbEstado" id="cmbEstado">
                         <option value="Habilitado" ${grupo.estado == 'Habilitado' ? 'selected' : ''}>Habilitado</option>
-                        <option value="Inhabilitado"${grupo.estado == 'Inhabilitado' ? 'selected' : ''}>Inhabilitado</option>
+                        <option value="Inhabilitado" ${grupo.estado == 'Inhabilitado' ? 'selected' : ''}>Inhabilitado</option>
+                        <option value="Finalizado" ${grupo.estado == 'Finalizado' ? 'selected' : ''}>Finalizado</option>
                     </select>
                 </div>
                 <div class="submit">

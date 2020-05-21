@@ -48,6 +48,9 @@
                 <c:if test="${error == 6}">
                     <p style="color:red">Debe ingresar un código para realizar una evaluación</p>
                 </c:if>
+                <c:if test="${error == 7}">
+                    <p style="color:red">Las evaluaciones para este grupo ya han sido cerradas</p>
+                </c:if>
             </c:if>
             <form action="/InstructoresProject/LoginEst" method="POST">
                 <div>

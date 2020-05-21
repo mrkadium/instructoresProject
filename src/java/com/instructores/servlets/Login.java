@@ -216,7 +216,11 @@ public class Login extends HttpServlet {
                     errorFound = true;
                 }else{
                     if(gr.getIdtest() == 0) {request.setAttribute("error", 2); errorFound = true;}
-                    if(!gr.getEstado().equals("Habilitado")) {request.setAttribute("error", 5); errorFound = true;}
+                    if(!gr.getEstado().equals("Habilitado")) {
+                        if(gr.getEstado().equals("Inhabilitado")) request.setAttribute("error", 5); 
+                        if(gr.getEstado().equals("Finalizado")) request.setAttribute("error", 7); 
+                        errorFound = true;
+                    }
                 }
             }
             
