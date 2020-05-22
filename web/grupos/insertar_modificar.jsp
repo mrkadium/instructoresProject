@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
 <link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -13,22 +13,22 @@
                     <input type="text" class="input-corto" id="txtIdgrupo" name="txtIdgrupo" value="${grupo.idgrupo}" readonly="readonly" />
                 </div>
                 <div>
-                    <label for="txtIdmateria">Materia:</label>
+                    <label for="txtIdmateria">Materia:</label>  
                     <input type="text" class="input-corto" required id="txtIdmateria" readonly name="txtIdmateria" value="${grupo.idmateria}" />
                     <input type="text" class="input-largo" required id="txtMateria" readonly name="txtMateria" value="${m.materia}" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=materias');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a title="Buscar" href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=materias');" class="puntos"><i class="fas fa-search"></i></a> 
                 </div>
                 <div>
                     <label for="txtIdcatedratico">Catedrático:</label>
                     <input type="text" class="input-corto" required id="txtIdcatedratico" readonly name="txtIdcatedratico" value="${grupo.idcatedratico}" />
                     <input type="text" class="input-largo" required id="txtCatedratico" readonly name="txtCatedratico" value="${c.nombres} ${c.apellidos}" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=catedraticos');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a title="Buscar" href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=catedraticos');" class="puntos"><i class="fas fa-search"></i></a>  
                 </div>
                 <div>
-                    <label for="txtIdinstructor">Instructor:</label>
+                    <label for="txtIdinstructor">Instructor:</label>  
                     <input type="text" class="input-corto" required id="txtIdinstructor" readonly name="txtIdinstructor" value="${grupo.idinstructor}" />
                     <input type="text" class="input-largo" required id="txtInstructor" readonly name="txtInstructor" value="${i.nombres} ${i.apellidos}" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=instructores');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a title="Buscar" href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?accion=instructores');" class="puntos"><i class="fas fa-search"></i></a>  
                 </div>
                 <div>
                     <label for="txtNumeroGrupo">No. Grupo:</label>
@@ -37,17 +37,17 @@
                 <div>
                     <label for="txtClave">Clave:</label>
                     <input type="text" class="gen_pwd_out" required id="txtClave" name="txtClave" value="${grupo.clave}" />
-                    <button id="gen_pwd">Generar contraseña</button>
+                    <!--<button id="gen_pwd">Generar contraseña</button>-->
                 </div>
                 <div>
                     <label for="txtCiclo">Ciclo:</label>
                     <input type="text" id="txtCiclo" name="txtCiclo" value="${grupo.ciclo}"/>
                 </div>
                 <div>
-                    <label for="txtIdtest">Test</label>
+                    <label for="txtIdtest">Test</label> 
                     <input type="text" class="input-corto" required id="txtIdtest" readonly name="txtIdtest" value="${grupo.idtest}" />
                     <input type="text" class="input-largo" required id="txtCiclo_test" readonly name="txtCiclo_test" value="${t.ciclo}" />
-                    <a href="#" onclick="openWindow('${pageContext.servletContext.contextPath}/Grupos?accion=tests');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a title="Buscar" href="javascript:void(0)" onclick="openWindow('${pageContext.servletContext.contextPath}/Grupos?accion=tests');" class="puntos"><i class="fas fa-search"></i></a>    
                 </div>
                 <div>
                     <label for="cmbEstado">Estado</label>

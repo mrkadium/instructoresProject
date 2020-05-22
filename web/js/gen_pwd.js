@@ -34,14 +34,16 @@ function generatePassworwd(){
     return pass;
 }
 
-button_gen_pwd.addEventListener('click', (e) => {
-    if(gen_pwd_out.tagName == 'INPUT'){
-        gen_pwd_out.value = generatePassworwd();
-    }else{
-        gen_pwd_out.innerText = generatePassworwd();
-    }    
-    e.preventDefault();
-});
+if(button_gen_pwd){    
+    button_gen_pwd.addEventListener('click', (e) => {
+        if(gen_pwd_out.tagName == 'INPUT'){
+            gen_pwd_out.value = generatePassworwd();
+        }else{
+            gen_pwd_out.innerText = generatePassworwd();
+        }    
+        e.preventDefault();
+    });
+}
 
 if(gen_pwd_out.tagName == 'INPUT'){
     gen_pwd_out.value = generatePassworwd();

@@ -1,0 +1,117 @@
+.fondo{
+    width: 100%;
+    max-width: 1000px;
+}
+.formulario{
+    width: 100%;
+    margin: 0;
+}
+.formulario h2{
+    margin: 0;
+    text-align: center;
+    color: rgb(150,150,150);
+}
+.formulario form{
+    margin: 0 auto;
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: start; */
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    text-align: center;
+}
+.formulario form div{
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 18px;
+}
+.formulario form div label{
+    display: block;
+    color: rgb(150,150,150);
+}
+.formulario form div a{
+    background-color: rgb(97, 206, 97);
+    width: 15%;
+    color: white;
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.formulario form div input[type='text'],
+.formulario form div select,
+.formulario form div textarea
+{
+    color: rgb(97, 206, 97);;
+    display: inline-block;
+    width: 90%;
+    border: 2px solid rgb(230,230,230);
+    border-radius: 10px;
+    padding: 3px;
+    text-align: center;
+    font-size: 18px;
+
+    transition: box-shadow .2s ease,
+                border .2s ease;
+}
+.formulario form div textarea{
+    height: 80px;
+}
+.formulario form div input[type='text']:focus,
+.formulario form div select:focus,
+.formulario form div textarea:focus
+{
+    border: 2px solid rgb(180, 231, 180);
+}
+.formulario form div input[type='text']:hover,
+.formulario form div select:hover,
+.formulario form div textarea:hover
+{
+    /* border: 2px solid rgb(145, 216, 145); */
+    box-shadow: 0 0 2px rgb(97, 206, 97);
+}
+.formulario form div input[type='text'].input-corto{
+    width: 15%;
+}
+.formulario form div input[type='text'].input-largo{
+    width: 60%;
+}
+.formulario form div input[type='submit'],
+.formulario form div a.cancel{
+    margin-top: 10px;
+    color: white;
+    background-color: rgb(97, 206, 97);
+    padding: 8px 20px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 18px;
+    transition: transform .2s ease,
+                box-shadow .3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+.formulario form div a.cancel{
+    background-color: crimson;
+    margin-top: 0;
+    width: unset;
+}
+.formulario form div input[type='submit']:hover,
+.formulario form div a.cancel:hover{
+    transform: scale(1.1);
+}
+
+@media only screen and (min-width: 768px){
+    .formulario h2{
+        font-size: 30px;
+    }
+    .formulario form div a{
+        width: 5%;
+    }
+    .formulario form div input[type='text'].input-largo{
+        width: 70%;
+    }
+}
