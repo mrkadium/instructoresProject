@@ -12,6 +12,9 @@
         function abrirVentana(URL){
             window.open(URL,"_blank","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
         }
+        function pageChange(URL){
+            window.open(URL,"_self","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
+        }
         function leave(dir){
             if(confirm('¿Realmente desea salir?')){
                 window.location = dir;

@@ -32,9 +32,9 @@
                 </div>
                 <div class="results__pagination">
                     <p>Página</p>
-                    <button class="prev" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?pag_number=${pag.getPrevPage()}')">&lt;</button>
+                    <button class="prev" onclick="pageChange('${pageContext.servletContext.contextPath}/Grupos?pag_number=${pag.getPrevPage()}')">&lt;</button>
                     <span>${pag.getCurrentPage()}/${pag.getTotalPages()}</span>
-                    <button class="next" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Grupos?pag_number=${pag.getNextPage()}')">&gt;</button>
+                    <button class="next" onclick="pageChange('${pageContext.servletContext.contextPath}/Grupos?pag_number=${pag.getNextPage()}')">&gt;</button>
                 </div>
             </div>
            <div class="tablas">
