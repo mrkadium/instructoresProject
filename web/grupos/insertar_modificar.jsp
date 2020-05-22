@@ -60,6 +60,9 @@
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
                 </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Grupos')" class="cancel">Cancelar</a>
+                </div>
             </form>
         </div>
     </div>
