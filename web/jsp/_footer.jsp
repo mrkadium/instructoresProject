@@ -10,7 +10,7 @@
     <script src="js/table_search.js"></script>
     <script>
         function abrirVentana(URL){
-            window.open(URL,"_self","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
+            window.open(URL,"_blank","width=700,height=400,scrollbars=YES,statusbar=YES,top=150,left=300");
         }
     </script>
     </body>
