@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
 <link rel='stylesheet' href='css/css/styleTable.css'>
-<link rel='stylesheet' href='css/css/styleEdicion.css'>
+<link rel='stylesheet' href='css/css/new_stylesEdicion.css'>
 <!--<link rel='stylesheet' href='css/css/styleConfiguracion.css'>-->
 <%@include file="../jsp/_nav.jsp"%>
 
@@ -18,7 +18,7 @@
                 <div>
                     <label for="txtIdplantilla_test">ID Plantilla:</label>
                     <input type="text" id="txtIdplantilla_test" name="txtIdplantilla_test" value="${idplantilla_test}" readonly="readonly" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Tests?accion=plantillas_test');" class="puntos"><i class="fas fa-search"></i></a>   
+                    <a href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Tests?accion=plantillas_test');" class="puntos"><i class="fas fa-search"></i></a>   
                 </div>
                     </c:if>
                 <div>
@@ -28,9 +28,12 @@
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
                 </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Tests')" class="cancel">Cancelar</a>
+                </div>
             </form>
         </div>
-                
+                <br>
         <div class="conf">
             <h1>${op}</h1>
             <c:if test="${observacion != null}">

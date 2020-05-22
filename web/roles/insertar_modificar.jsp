@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -18,6 +18,9 @@
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Roles')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>

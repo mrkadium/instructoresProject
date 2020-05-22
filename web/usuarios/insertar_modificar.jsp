@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -22,11 +22,11 @@
                 </div>
                 <div>
                     <label for="txtNombres">Nombres:</label>
-                    <input type="text" required class="input-largo" id="txtNombres" name="txtNombres" value="${usuario.nombres}" />
+                    <input type="text" required class="" id="txtNombres" name="txtNombres" value="${usuario.nombres}" />
                 </div>
                 <div>
                     <label for="txtApellidos">Apellidos</label>
-                    <input type="text" required class="input-largo" id="txtApellidos" name="txtApellidos" value="${usuario.apellidos}" />
+                    <input type="text" required class="" id="txtApellidos" name="txtApellidos" value="${usuario.apellidos}" />
                 </div>
                 <div>
                     <label for="cmbRoles">Rol:</label>
@@ -45,64 +45,12 @@
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
                 </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Usuarios')" class="cancel">Cancelar</a>
+                </div>
             </form>
         </div>
     </div>
 </main>
-                
-
-<!--
-    <h1>Usuarios</h1>
-    <br/>
-    <form name="form_usuarios" onsubmit="return validar();"
-    action="${pageContext.servletContext.contextPath}/Usuarios?accion=insertar_modificar"
-    method="POST">
-        <table border="0" id="table">
-            <thead>
-                <tr>
-                <th colspan="">Complete la información<br><br></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>ID Usuario</td>
-                <td><input type="text" name="txtIdusuario" value="${usuario.idusuario}" readonly="readonly" /></td>
-                </tr>
-                <tr>
-                <td>Usuario</td>
-                <td><input type="text" name="txtUsuario" id="txtPais" value="${usuario.usuario}" /></td>
-                </tr>
-                <tr>
-                <td>Nombres</td>
-                <td><input type="text" name="txtNombres" id="txtPais" value="${usuario.nombres}" /></td>
-                </tr>
-                <tr>
-                <td>Apellidos</td>
-                <td><input type="text" name="txtApellidos" id="txtPais" value="${usuario.apellidos}" /></td>
-                </tr>
-                <tr>
-                <td>Clave</td>
-                <td><input type="text" name="txtClave" id="txtPais" value="${usuario.clave}" /></td>
-                </tr>
-                <tr>
-                <td>Rol</td>
-                <td>
-                    <select id="cmbRoles">
-                        <c:forEach var="r" items="${Roles}">
-                            <option value="${r.idrol}">${r.rol}</option>
-                        </c:forEach>
-                    </select>
-                </td>
-                </tr>
-            </tbody>
-        </table>
-        <br/>
-        <div class="buttons">
-            <ul>
-                <li><input type="submit" value="Guardar" name="guardar"/></li>
-                <li><a href="#" onclick="javascript: return window.history.back()">Regresar</a></li>
-            </ul>   
-        </div>
-    </form>-->
-
+         
 <%@include file="../jsp/_footer.jsp"%>

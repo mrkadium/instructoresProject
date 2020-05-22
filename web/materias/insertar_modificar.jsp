@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <label for="txtMateria">Nombre materia:</label>
-                    <input type="text" class="input-largo" required id="txtMateria" name="txtMateria" value="${materia.materia}" />
+                    <input type="text" class="" required id="txtMateria" name="txtMateria" value="${materia.materia}" />
                 </div>
                 <div>
                     <label for="txtAlias">Alias:</label>
@@ -30,6 +30,9 @@
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Materias')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>

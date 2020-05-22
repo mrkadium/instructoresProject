@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -18,11 +18,11 @@
                 </div>
                 <div>
                     <label for="txtDescripcion">Descripción:</label>
-                    <input type="text" class="input-largo" required id="txtDescripcion" name="txtDescripcion" value="${menu.descripcion}" />
+                    <input type="text" class="" required id="txtDescripcion" name="txtDescripcion" value="${menu.descripcion}" />
                 </div>
                 <div>
                     <label for="txtUrl">URL:</label>
-                    <input type="text" class="input-largo" required id="txtUrl" name="txtUrl" value="${menu.url}" />
+                    <input type="text" class="" required id="txtUrl" name="txtUrl" value="${menu.url}" />
                 </div>
                 <div>
                     <label for="txtIdcss">ID CSS:</label>
@@ -36,10 +36,13 @@
                     <label for="txtIdpadre">Padre:</label>
                     <input type="text" class="input-corto" required id="txtIdpadre" name="txtIdpadre" value="${menu.idpadre}" />
                     <input type="text" class="input-largo" required id="txtPadre" name="txtPadre" value="${menu.padre}" />
-                    <a href="#" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Menus?accion=padre');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Menus?accion=padre');" class="puntos"><i class="fas fa-search"></i></a>                    
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Menus')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>

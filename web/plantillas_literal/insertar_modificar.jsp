@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
 <link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -16,7 +16,7 @@
                     <label for="txtIdplantilla_test">Plantilla de test:</label>
                     <input type="text" class="input-corto" required id="txtIdplantilla_test" readonly name="txtIdplantilla_test" value="${plantilla_literal.idplantilla_test}" />
                     <input type="text" class="input-largo" required id="txtCiclo" readonly name="txtCiclo" value="${pt.ciclo}" />
-                    <a href="#" onclick="abrirVentan('${pageContext.servletContext.contextPath}/Plantillas_literal?accion=plantillas_test');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a title="Buscar" href="javascript:void(0)" onclick="abrirVentan('${pageContext.servletContext.contextPath}/Plantillas_literal?accion=plantillas_test');" class="puntos"><i class="fas fa-search"></i></a>                    
                 </div>
                 <div>
                     <label for="txtLiteral">Literal:</label>
@@ -38,6 +38,9 @@
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Plantillas_literal')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>

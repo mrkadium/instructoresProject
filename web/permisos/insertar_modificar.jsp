@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
 <link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -16,7 +16,7 @@
                     <label for="txtIdmenu">Menú:</label>
                     <input type="text" class="input-corto" required id="txtIdmenu" readonly name="txtIdmenu" value="${menu.idpadre}" />
                     <input type="text" class="input-largo" required id="txtMenu" readonly name="txtMenu" value="${menu.padre}" />
-                    <a onclick="abrirVentana('${pageContext.servletContext.contextPath}/Permisos?accion=menus');" class="puntos"><i class="fas fa-search"></i></a>                    
+                    <a href="javascript:void(0)" onclick="abrirVentana('${pageContext.servletContext.contextPath}/Permisos?accion=menus');" class="puntos"><i class="fas fa-search"></i></a>                    
                 </div>
                 <div>
                     <label for="cmbRol">Rol:</label>
@@ -30,6 +30,9 @@
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
                 </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Permisos')" class="cancel">Cancelar</a>
+                </div>
             </form>
         </div>
         <br><br>
@@ -42,20 +45,6 @@
     function setDataMenu(idmenu, menu) {
         document.getElementById("txtIdmenu").value = idmenu;
         document.getElementById("txtMenu").value = menu;
-
-        var content = RegExp(menu, "i");
-        var rows = $('#table01 tbody tr');
-        var rowCount = ${rowCount};
-
-        //MOSTRAR SÓLO LOS REGISTROS QUE CONTENGAN ESE MENÚ
-        for(i=0; i<rowCount; i++){
-            if(rows.eq(i).text().search(content) == "-1"){
-                rows.eq(i).hide();
-            }else{
-                rows.eq(i).show();
-            }
-        }
-        $("div.tablas").show();
     }
 </script>
 

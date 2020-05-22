@@ -1,46 +1,6 @@
-<%--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="../jsp/_header.jsp"%>
-
-    <h1>Valoraciones</h1>
-    <br/>
-    <form name="form_valoraciones" onsubmit="return validar();"
-    action="${pageContext.servletContext.contextPath}/Valoraciones?accion=insertar_modificar"
-    method="POST">
-        <table border="0" id="table">
-            <thead>
-                <tr>
-                <th colspan="">Complete la información<br><br></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>ID Valoración</td>
-                <td><input type="text" name="txtIdvaloracion" value="${valoracion.idvaloracion}" readonly="readonly" /></td>
-                </tr>
-                <tr>
-                <td>Valoración</td>
-                <td><input type="text" name="txtValoracion" id="txtPais" value="${valoracion.valoracion}" /></td>
-                </tr>
-                <tr>
-                <td>Ponderación</td>
-                <td><input type="text" name="txtPonderacion" id="txtPais" value="${valoracion.ponderacion}" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <br/>
-        <div class="buttons">
-            <ul>
-                <li><input type="submit" value="Guardar" name="guardar"/></li>
-                <li><a href="#" onclick="javascript: return window.history.back()">Regresar</a></li>
-            </ul>   
-        </div>
-    </form>
-
-<%@include file="../jsp/_footer.jsp"%>--%>
-
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -66,6 +26,9 @@
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Valoraciones')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>

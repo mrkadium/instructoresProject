@@ -222,7 +222,8 @@ public class Plantillas_literal extends HttpServlet {
                 //declaracion de cabeceras a usar en la tabla HTML
                 String[] cabeceras = new String[]{
                     "ID Plantilla-test",
-                    "Ciclo"
+                    "Ciclo",
+                    "Descripcion"
                 };
                 //variable de tipo Tabla para generar la Tabla HTML
                 Tabla tab = new Tabla(materias, //array que contiene los datos

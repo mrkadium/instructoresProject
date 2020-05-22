@@ -1,6 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
-<link rel="stylesheet" href="css/css/styleEdicion.css">
+<!--<link rel="stylesheet" href="css/css/styleTable.css">-->
+<link rel="stylesheet" href="css/css/new_stylesEdicion.css">
 <%@include file="../jsp/_nav.jsp"%>
 
 <main>
@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <label for="txtFacultad">Nombre facultad:</label>
-                    <input type="text" required class="input-largo" id="txtFacultad" name="txtFacultad" value="${facultad.facultad}" />
+                    <input type="text" required class="" id="txtFacultad" name="txtFacultad" value="${facultad.facultad}" />
                 </div>
                 <div>
                     <label for="txtAlias">Alias:</label>
@@ -31,6 +31,9 @@
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="leave('${pageContext.servletContext.contextPath}/Facultades')" class="cancel">Cancelar</a>
                 </div>
             </form>
         </div>
