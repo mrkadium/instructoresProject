@@ -17,7 +17,7 @@ public class Tabla {
         public static final String INSERTAR = "<i title='Insertar' class=\"fas fa-plus-circle\"></i>";
         public static final String MODIFICAR = "<i title='Modificar' class=\"fas fa-pencil-alt\"></i>";
         public static final String ELIMINAR = "<i title='Eliminar' class=\"fas fa-trash-alt\"></i>";
-        public static final String COPIAR = "<i title='Eliminar' class=\"far fa-copy\"></i>";
+        public static final String COPIAR = "<i title='Copiar link a portapapeles' class=\"far fa-copy\"></i>";
     }
 
     public static final class ALIGN {
@@ -237,7 +237,7 @@ public class Tabla {
            if (isCopiable()){
                 String enlaceCopiable = getIconoCopiable();
                 
-                Tabla += "<td><a title='Copiar link a portapapeles' class='btn' "
+                Tabla += "<td><a class='btn' "
                         + "href='javascript:void(0)' "
                         + "onclick=\"copyToClipboard(event,'" + getColumnaCopiable() + "', '" + getDir_Port() + getPaginaCopiable() + "')\">"
                         + enlaceCopiable

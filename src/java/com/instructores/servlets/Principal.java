@@ -456,22 +456,26 @@ public class Principal extends HttpServlet {
                 request.setAttribute("Instructores", instructores);
                 
                 String[] cabeceras = new String[]{
-                "ID Grupo",
+                "ID",
                 "Materia",
-                "Facultad",
+                "Fac.",
                 "Instructor",
                 "Catedrático",
                 "# Grupo",
                 "Clave",
                 "Ciclo",
-                "ID Test",
+                "Test",
                 "Estado",
-                "Cant. Ev."
+                "# Ev."
                 };
                 
                 Tabla tab = new Tabla(grupos,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
                 tab.setLimiteInferior(p.getCurrentLowerLimit());
-                tab.setLimiteSuperior(p.getCurrentUpperLimit());
+                tab.setLimiteSuperior(p.getCurrentUpperLimit());                
+                tab.setCopiable(true);
+                tab.setDir_Port(request.getServerName()+":"+request.getServerPort());
+                tab.setPaginaCopiable("/Login?accion=loginEst&txtClave=");
+                tab.setColumnaCopiable(6);
                 tab.setModificable(true);
                 tab.setPaginaModificable("/Principal?accion=grupo");
                 tab.setIconoModificable(Tabla.ICON.VER_MAS);
