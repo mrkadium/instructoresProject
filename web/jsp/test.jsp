@@ -106,7 +106,7 @@
                         <label for="observacion">Observación [opcional]:</label>
                         <textarea name="observacion" id="observacion" cols="30" rows="5"></textarea>
                     </div>
-                    <input type="submit" value="Enviar">
+                    <input type="submit" value="Enviar" onclick="confirmSend(event)">
                 </form>                          
             <div class="modal hide__modal">
                 <div class="modal__content">
@@ -114,73 +114,10 @@
                     <button class="modal__btn"></button>
                 </div>
             </div>
-            <a href="/InstructoresProject/Login?accion=logout" class="cancelar">Cancelar</a>
+            <a onclick="leave('/InstructoresProject/Login?accion=logout')" class="cancelar">Cancelar</a>
         </div>
     </main>
     
-    
-<!--    <div class="contenedor2">
-        <form action="/InstructoresProject/Login?accion=enviarTest" method="post">
-            <div class="cabecera">
-                <div>
-                    <p><strong>Instructor: </strong>${gr.instructor}</p>
-                    <p><strong>Instructoría: </strong>${gr.materia}</p>
-                    <p><strong>Catedrático: </strong>${gr.catedratico}</p>
-                    <p><strong>Grupo: </strong>${gr.numero_grupo}</p>  
-                    <p><strong>Ciclo: </strong>${gr.ciclo}</p>                       
-                </div>
-                <div>
-                    <img src="img/logo.png">
-                </div>
-            </div>
-            <br>
-            
-            
-            <c:forEach var="tipo" items="${tipos}">  una tabla por cada tipo de literal 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Literal</th>
-                            <c:forEach var="valoracion" items="${valoraciones}">
-                                <c:if test="${valoracion.idtipo == tipo.idtipo}">
-                                    <th>${valoracion.valoracion}</th>
-                                </c:if>
-                            </c:forEach>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="literal" items="${literales}">
-                            <c:if test="${literal.idtipo == tipo.idtipo}">
-                                <tr class='row'>
-                                    <td>${literal.literal}</td>
-                                    <c:if test="${tipo.tipo != 'cuantitativa'}">
-                                        <c:forEach var="valoracion" items="${valoraciones}">
-                                            <c:if test="${valoracion.idtipo == tipo.idtipo}">
-                                                <td><input type="radio" name="literal${literal.idliteral}" required></td>
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:if>
-                                    <c:if test="${tipo.tipo == 'cuantitativa'}">
-                                        <c:forEach var="valoracion" items="${valoraciones}">
-                                            <c:if test="${valoracion.idtipo == tipo.idtipo}">
-                                                <td><input style="width:40px" type="text" name="literal${literal.idliteral}" required></td>
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:if>
-                                </tr>
-                            </c:if>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <br>
-            </c:forEach>
-            
-            
-            <br>
-            <input type="submit" value="Enviar">
-        </form>
-    <a href="/InstructoresProject/Login?accion=logout">Cancelar</a>
-    </div>-->
    <footer>
         <p>Evaluación de instructores &copy; Universidad de Sonsonate - 2019</p>
         <p>Desarrollador: <span>Mario Adalberto Rivera Olivo</span></p>
@@ -203,34 +140,16 @@
                 showMessage('Para una mejor experiencia, ponga su dispositivo de manera horizontal','Entendido');
             }
         }
-//        $(document).ready(function(){
-//            var campo = $(".cuan");
-//            campo.keyup(function(){
-//                var nonum = false, vacio = false;
-//                if(!jQuery.isNumeric(campo.val())){
-//                    nonum = true;
-//                }else{
-//                    nonum = false;
-//                }
-//                if(campo.val() == ""){
-//                    vacio = true;
-//                }else{
-//                    vacio = false;
-//                }
-//                if(nonum){
-//                    campo.val("");
-//                }else{
-//                    if(campo.val() < 1 || campo.val() > 10){
-//                        campo.val("");
-//                    }
-//                }
-//            });
-//            
-//            $("form").submit(function(){
-//                var value = $(".cuan").val();
-//                $(".cuan").val(value+"@");
-//            });
-//        });
+        function leave(dir){
+            if(confirm('¿Realmente desea salir?')){
+                window.location = dir;
+            }
+        }
+        function confirmSend(e){
+            if(!confirm('¿Enviar evaluación?')){
+                e.preventDefault();
+            }
+        }
     </script>
 </body>
 </html>
