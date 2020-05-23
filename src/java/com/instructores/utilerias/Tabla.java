@@ -17,6 +17,7 @@ public class Tabla {
         public static final String INSERTAR = "<i title='Insertar' class=\"fas fa-plus-circle\"></i>";
         public static final String MODIFICAR = "<i title='Modificar' class=\"fas fa-pencil-alt\"></i>";
         public static final String ELIMINAR = "<i title='Eliminar' class=\"fas fa-trash-alt\"></i>";
+        public static final String COPIAR = "<i title='Eliminar' class=\"far fa-copy\"></i>";
     }
 
     public static final class ALIGN {
@@ -58,6 +59,12 @@ public class Tabla {
     private String iconoImprimible;
     private Integer limiteInferior;
     private Integer limiteSuperior;
+    
+    private boolean copiable;
+    private String paginaCopiable;
+    private String iconoCopiable;
+    private int columnaCopiable;
+    private String dir_port;
             
     public Tabla(String[][] rs, String ancho, String estilo,int alineacion,String[] cabeceras){
        this.rs = rs;
@@ -91,6 +98,10 @@ public class Tabla {
        imprimible = false;
        paginaImprimible = "";
        iconoImprimible = "";
+       
+       copiable = false;
+       paginaCopiable = "";
+       iconoCopiable = ICON.COPIAR;
     }
     
     public Tabla(String[][] rs, String ancho, String estilo,int alineacion,String[] cabeceras, int[] anchoColumnas){
@@ -148,6 +159,11 @@ public class Tabla {
                 cab += "<th>"+cabec[i]+"</th>";
             else
                 cab += "<th style='width:"+columnas[i]+"%'>"+cabec[i]+"</th>";
+        }
+        if(isCopiable()){
+            cab +="<th>";
+            cab += "Copiar";
+            cab +="</th>";
         }
         if (isEliminable())
             cab +="<th>";
@@ -218,6 +234,15 @@ public class Tabla {
                  }
             }
            
+           if (isCopiable()){
+                String enlaceCopiable = getIconoCopiable();
+                
+                Tabla += "<td><a title='Copiar link a portapapeles' class='btn' "
+                        + "href='javascript:void(0)' "
+                        + "onclick=\"copyToClipboard(event,'" + getColumnaCopiable() + "', '" + getDir_Port() + getPaginaCopiable() + "')\">"
+                        + enlaceCopiable
+                        + "</a></td>";
+           }
            if (isModificable()){
                 String enlaceModificable;
                 if (getIconoModificable().equals(""))
@@ -488,5 +513,16 @@ public class Tabla {
     public void setLimiteSuperior(Integer limiteSuperior){
         this.limiteSuperior = limiteSuperior;
     }
+    
+    public boolean isCopiable() {return copiable;}
+    public void setCopiable(boolean copiable){this.copiable = copiable;}
+    public void setPaginaCopiable(String paginaCopiable){this.paginaCopiable = paginaCopiable;}
+    public void setIconoCopiable(String iconoCopiable){this.iconoCopiable = iconoCopiable;}
+    public void setColumnaCopiable(int index){this.columnaCopiable = index;}
+    public int getColumnaCopiable(){return columnaCopiable;}
+    public String getPaginaCopiable(){return pageContext + paginaCopiable;}
+    public String getIconoCopiable(){return iconoCopiable;}
+    public void setDir_Port(String dir_port){this.dir_port = dir_port;}
+    public String getDir_Port(){return dir_port;}
     
 }

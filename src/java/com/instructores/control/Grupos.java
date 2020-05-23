@@ -102,6 +102,12 @@ public class Grupos extends HttpServlet {
                 tab.setModificable(true);
                 //url del proyecto
                 tab.setPageContext(request.getContextPath());
+                
+                tab.setCopiable(true);
+                tab.setDir_Port(request.getServerName()+":"+request.getServerPort());
+                tab.setPaginaCopiable("/Login?accion=loginEst&txtClave=");
+                tab.setColumnaCopiable(5);
+                
                 //pagina encargada de eliminar
                 tab.setPaginaEliminable("/Grupos?accion=eliminar");
                 //pagina encargada de actualizacion

@@ -127,6 +127,7 @@ public class Login extends HttpServlet {
     
     private void iniciarSesionEst(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
+        request.getSession().invalidate();
         String clave = request.getParameter("txtClave") != null ? request.getParameter("txtClave") : "";
         boolean errorFound = false;
         try{
