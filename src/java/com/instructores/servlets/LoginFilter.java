@@ -30,36 +30,14 @@ public class LoginFilter implements Filter {
     
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        try{
-            Conexion con = new ConexionPool();
-            con.conectar();
-            Operaciones.abrirConexion(con);
-            Operaciones.iniciarTransaccion();
-            
-            HttpServletRequest req = (HttpServletRequest)request;
-            HttpServletResponse res = (HttpServletResponse)response;
-            
-            if(req.getSession().getAttribute("gr") == null){
-                req.getSession().removeAttribute("accion");
-                req.removeAttribute("accion");
-                res.sendRedirect("Login");
-            }
-            
-            chain.doFilter(request, response);
-            Operaciones.commit();
-        }catch(Exception ex){
-            try {
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(LoginFilter.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }finally{
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginFilter.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        HttpServletRequest req = (HttpServletRequest)request;
+        HttpServletResponse res = (HttpServletResponse)response;
+
+        if(req.getSession().getAttribute("gr") == null){
+            req.getSession().removeAttribute("accion");
+            req.removeAttribute("accion");
+            res.sendRedirect("Login");
+        }else chain.doFilter(request, response);
     }
     public void destroy() {        
     }

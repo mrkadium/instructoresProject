@@ -110,17 +110,9 @@ public class Login extends HttpServlet {
         }catch(Exception ex) {
             io.println(ex.getMessage());
             request.setAttribute("error", 4);
-            try {
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Operaciones.rollback();
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
         }
         request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
     }
@@ -290,12 +282,20 @@ public class Login extends HttpServlet {
                     
                     
                     List<Menu> permisos = getPermisos(u.getIdrol());
+                    if(permisos == null) throw new Exception("");
                     List<Menu> MenuPrincipal = new ArrayList();
                     for(int i=0; i<permisos.size(); i++){
                         if(permisos.get(i).getIdpadre() == 0){
                             MenuPrincipal.add(permisos.get(i));
                         }
                     }
+                    
+                    
+                    //Id's de usario que son administrador
+                    sql = "select idusuario from usuario where idrol in (select idrol from rol where rol = 'admin')";
+                    String[][] rsAdmins = Operaciones.consultar(sql, new ArrayList());
+                    sesion.setAttribute("admins", rsAdmins);
+                    
 
                     sesion.setAttribute("MenuPrincipal", MenuPrincipal);
                     sesion.setAttribute("Permisos", permisos);
@@ -306,8 +306,8 @@ public class Login extends HttpServlet {
                     response.sendRedirect("Principal");  
                 }else{
                     request.setAttribute("error", 2);
-                    Operaciones.rollback();
                     request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);
+                    throw new Exception("");
                 }
             }
             
@@ -322,19 +322,21 @@ public class Login extends HttpServlet {
     
     private List<Menu> getPermisos(Integer idrol) throws SQLException{
         List<Menu> permisos = new ArrayList();
-        try{
-            String sql = "select * from menu where idmenu in (select idmenu from permiso where idrol = ?)";
-            List<Object> param = new ArrayList();
-            param.add(idrol);
-            String[][] rs = Operaciones.consultar(sql, param);
+        String sql = "select * from menu where idmenu in (select idmenu from permiso where idrol = ?)";
+        List<Object> param = new ArrayList();
+        param.add(idrol);
+        String[][] rs;
+        try {
+            rs = Operaciones.consultar(sql, param);
             for(int i=0; i<rs[0].length; i++){
                 Menu m = new Menu(Integer.parseInt(rs[0][i]), rs[1][i], rs[2][i], rs[3][i], rs[4][i], rs[5][i], Integer.parseInt(rs[6][i]==null?"0":rs[6][i]));
                 permisos.add(m);
             }
-        }catch(Exception e){
-            Operaciones.rollback();
+            return permisos;
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return permisos;
     }
 
     @Override

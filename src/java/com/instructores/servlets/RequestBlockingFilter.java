@@ -29,57 +29,40 @@ public class RequestBlockingFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        PrintWriter out = response.getWriter();
+        HttpServletRequest req = (HttpServletRequest)request;
+        HttpServletResponse res = (HttpServletResponse)response;
+
+        int idrol = 0;
         try{
-            Conexion conn = new ConexionPool();
-            conn.conectar();
-            Operaciones.abrirConexion(conn);
-            Operaciones.iniciarTransaccion();
-            
-            HttpServletRequest req = (HttpServletRequest)request;
-            HttpServletResponse res = (HttpServletResponse)response;
-            
-            int idrol = 0;
-            try{
-                idrol = (int)req.getSession().getAttribute("Usuario");
-            }catch(Exception e){
-                req.setAttribute("error", 5);
-                req.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(req, res); 
-            }
-            String sql = "select idusuario from usuario where idrol in (select idrol from rol where rol = 'admin')";
-            out.println(sql);
-            String[][] rsAdmins = Operaciones.consultar(sql, new ArrayList());
-            boolean encontrado = false;
-            if(rsAdmins != null){
-                for(int i=0; i<rsAdmins[0].length; i++){
-                    if(Integer.parseInt(rsAdmins[0][i]) == (idrol)){
-                        encontrado = true;
-                    }
-                }
-            }else{
-                req.getRequestDispatcher("jsp/index.jsp").forward(req, res); 
-            }
-            if(!encontrado && (rsAdmins != null)){
-                req.getRequestDispatcher("Principal").forward(req, res);                
-            }
-            
-            chain.doFilter(request, response);
-            
-            Operaciones.commit();
-        }catch(Exception ex){
-            out.println("ERROR: "+ex.getMessage());
-            try {
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(RequestBlockingFilter.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }finally{
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(RequestBlockingFilter.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            //Se intenta obtener el id de usuario
+            idrol = (int)req.getSession().getAttribute("Usuario"); 
+        }catch(Exception e){
+            idrol = 0;
+            req.setAttribute("error", 5);
+            //Si no hay id, se redirecciona al login
+            req.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(req, res); 
         }
+
+        //Obtine la lista de los id's de administradores        
+        String[][] rsAdmins = (String[][])req.getSession().getAttribute("admins");
+        boolean encontrado = false;
+        if(rsAdmins != null && idrol != 0){ //Si la lista no está vacía y hay un id
+            for(int i=0; i<rsAdmins[0].length; i++){
+                if(Integer.parseInt(rsAdmins[0][i]) == (idrol)){ //Verifica si el de la lista es igual
+                    encontrado = true; //Si lo es
+                    break;
+                }
+            }
+        }else //Si la lista está vacía o no hay id, redirecciona al login
+            req.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(req, res);
+
+        
+        if(!encontrado && rsAdmins != null) //Si no se encontró en la lista, pero hay datos
+            //Significa que no rol administrador, y regresa a la principal
+            req.getRequestDispatcher("Principal").forward(req, res);             
+        else //Si se encontró, es administrador
+            chain.doFilter(request, response); //Deja seguir
+
     }
 
     public void destroy() {

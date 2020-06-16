@@ -141,17 +141,9 @@ public class Principal extends HttpServlet {
                 
             Operaciones.commit();
         } catch(Exception ex) {
-            try {
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Operaciones.rollback();
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
         }
     }
     
@@ -177,19 +169,11 @@ public class Principal extends HttpServlet {
             
             Operaciones.commit();
         } catch(Exception ex) {
-            try {
-                Operaciones.rollback();
-                request.setAttribute("error", 3);
-            } catch (SQLException ex1) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Operaciones.rollback();
+            request.setAttribute("error", 3);
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-                request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);   
-            } catch (SQLException ex) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
+            request.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(request, response);   
         } 
     }
     
@@ -237,18 +221,9 @@ public class Principal extends HttpServlet {
                 
                 Operaciones.commit();
         } catch(Exception ex) {
-            try {
-                io.print(ex.getMessage());
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Operaciones.rollback();
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
         }
     }
     
@@ -374,18 +349,9 @@ public class Principal extends HttpServlet {
 
             Operaciones.commit();
         } catch(Exception ex) {
-            try {
-                io.print(ex.getMessage());
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Operaciones.rollback();
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
         }
     }
     
@@ -509,18 +475,9 @@ public class Principal extends HttpServlet {
                 
                 Operaciones.commit();
             } catch(Exception ex) {
-                try {
-                    io.print(ex.getMessage());
-                    Operaciones.rollback();
-                } catch (SQLException ex1) {
-                    Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex1);
-                }
+                Operaciones.rollback();
             } finally {
-                try {
-                    Operaciones.cerrarConexion();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                Operaciones.cerrarConexion();
             }
     }
     
@@ -661,17 +618,8 @@ public class Principal extends HttpServlet {
             Operaciones.commit();
         }catch(Exception ex) {
             Operaciones.rollback();
-            try {
-                Operaciones.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex1);
-            }
         } finally {
-            try {
-                Operaciones.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Operaciones.cerrarConexion();
         }
         request.getRequestDispatcher("jsp/grupo.jsp").forward(request, response);
     }
