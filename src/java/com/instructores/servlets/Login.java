@@ -4,10 +4,12 @@ import com.instructores.viewmodels.*;
 import com.instructores.conexion.*;
 import com.instructores.entidad.*;
 import com.instructores.operaciones.*;
+import com.instructores.utilerias.Cantidad_Tipo;
 import com.instructores.utilerias.Hash;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -165,12 +167,24 @@ public class Login extends HttpServlet {
                 if(rs != null && gr.getEstado().equals("Habilitado") && gr.getIdtest() != 0){
                     sesion.setAttribute("gr", gr);
                     
+                    
+                    //Lista de tipos y sus cantidades
+                    List<Cantidad_Tipo> lstCantidadTipo = new ArrayList();
+                    
+                    
                     String sqlTipos = "select * from tipo";
                     String[][] rsTipos = Operaciones.consultar(sqlTipos, new ArrayList());
                     if(rsTipos != null){
                         List<Tipo> getTipos = new ArrayList();
                         for(int i=0; i<rsTipos[0].length; i++){
                             Tipo t = new Tipo(Integer.parseInt(rsTipos[0][i]), rsTipos[1][i], rsTipos[2][i]);
+                            
+                            //Guardo primero los tipos, sin sus cantidades
+                            Cantidad_Tipo ct = new Cantidad_Tipo();
+                            ct.setIdTipo(t.getIdtipo());
+                            ct.setTipo(t.getTipo());
+                            lstCantidadTipo.add(ct);
+                            
                             getTipos.add(t);
                         }
                         sesion.setAttribute("tipos", getTipos);
@@ -197,6 +211,19 @@ public class Login extends HttpServlet {
                             Literal lit = new Literal(Integer.parseInt(rsLiterales[0][i]), rsLiterales[1][i],Integer.parseInt(rsLiterales[2][i]),Integer.parseInt(rsLiterales[3][i]));
                             getLiterales.add(lit);
                         }
+                        
+                        
+                        //Contar las apariciones de cada tipo
+                        for(Cantidad_Tipo lct: lstCantidadTipo){ //Por cada tipo
+                            for(Literal ll: getLiterales){ //Evaluar cada literal
+                                //Si los idtipo del literal y el tipo son iguales, 
+                                //se aumenta la cantidad de ese tipo en la lista de cantidad
+                                if(ll.getIdtipo() == lct.getIdTipo()) lct.aumentarCantidad();
+                            }
+                        }
+                        sesion.setAttribute("CantidadesTipo", lstCantidadTipo);
+                        
+                        
                         sesion.setAttribute("literales", getLiterales);
                         response.sendRedirect("Test");                   
                     }else{

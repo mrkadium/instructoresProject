@@ -63,14 +63,15 @@
             </div>
             
                 <form action="/InstructoresProject/Login?accion=enviarTest" method="post">
-                    <c:forEach var="tipo" items="${tipos}"> <!-- una tabla por cada tipo de literal -->
+                    <c:forEach var="tipo" items="${CantidadesTipo}"> <!-- una tabla por cada tipo de literal -->
+                    <c:if test="${tipo.cantidad != 0}"> 
                         <div class="tablas">
                         <table id="table01">
                             <thead>
                                 <tr>
                                     <th>Literal</th>
                                     <c:forEach var="valoracion" items="${valoraciones}">
-                                        <c:if test="${valoracion.idtipo == tipo.idtipo}">
+                                        <c:if test="${valoracion.idtipo == tipo.getIdTipo()}">
                                             <th>${valoracion.valoracion}</th>
                                         </c:if>
                                     </c:forEach>
@@ -78,19 +79,19 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="literal" items="${literales}">
-                                    <c:if test="${literal.idtipo == tipo.idtipo}">
+                                    <c:if test="${literal.idtipo == tipo.getIdTipo()}">
                                         <tr class='row'>
                                             <td>${literal.literal}</td>
                                             <c:if test="${tipo.tipo != 'cuantitativa'}">
                                                 <c:forEach var="valoracion" items="${valoraciones}">
-                                                    <c:if test="${valoracion.idtipo == tipo.idtipo}">
+                                                    <c:if test="${valoracion.idtipo == tipo.getIdTipo()}">
                                                         <td><input type="radio" name="literal${literal.idliteral}" value="${valoracion.idvaloracion}" required></td>
                                                     </c:if>
                                                 </c:forEach>
                                             </c:if>
                                             <c:if test="${tipo.tipo == 'cuantitativa'}">
                                                 <c:forEach var="valoracion" items="${valoraciones}">
-                                                    <c:if test="${valoracion.idtipo == tipo.idtipo}">                                                        
+                                                    <c:if test="${valoracion.idtipo == tipo.getIdTipo()}">                                                        
                                                         <td><input style="width:40px" type="text" class="cuan" name="literal${literal.idliteral}" required></td>
                                                     </c:if>
                                                 </c:forEach>
@@ -101,6 +102,7 @@
                             </tbody>
                         </table>
                         </div>
+                    </c:if>
                     </c:forEach>
                     <div class="ob">
                         <label for="observacion">Observación [opcional]:</label>
