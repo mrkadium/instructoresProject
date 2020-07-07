@@ -53,19 +53,41 @@ public class Reportes extends HttpServlet {
             param.add(request.getParameter("id"));
             String[][] rs = null;
             rs = Operaciones.consultar(sql, param);
+            
             if(rs != null && rs[7][0] != null){
                 ViewModelGrupo gr = new ViewModelGrupo(Integer.parseInt(rs[0][0]),rs[1][0],rs[2][0],rs[3][0],rs[4][0],rs[5][0],rs[6][0],Integer.parseInt(rs[7][0]),rs[8][0]);
 
-
+                //Verifica si existen los tipos en la evalación
+                sql = "SELECT \n" +
+                    "	a.tipo, (COUNT(*) > 0) AS hasValue\n" +
+                    "FROM tipo a\n" +
+                    "LEFT JOIN valoracion b ON a.idtipo = b.idtipo\n" +
+                    "INNER JOIN literal_evaluacion c ON c.idvaloracion = b.idvaloracion\n" +
+                    "INNER JOIN evaluacion d ON c.idevaluacion = d.idevaluacion\n" +
+                    "INNER JOIN grupo e ON d.idgrupo = e.idgrupo\n" +
+                    "WHERE e.idgrupo = ?\n" +
+                    "GROUP BY a.idtipo\n" +
+                    ";";
+                rs = Operaciones.consultar(sql, param);
+                boolean haveCualitativas = verificarTipo(rs, "cualitativa");
+                boolean haveCuantitativas = verificarTipo(rs, "cuantitativa");
+                boolean haveSino = verificarTipo(rs, "si-no");
+                
+                //Verifica si existen observaciones
+                sql = "SELECT COUNT(*) > 0 AS hasEvaluacion FROM evaluacion WHERE idgrupo = ?;";
+                rs = Operaciones.consultar(sql, param);
+                boolean haveObservaciones = rs[0][0].equals("1");
+                
                 ServletContext context = request.getServletContext();
                 File reportFile = null;
                 String reportName = "";
+                
                 if(accion.equals("")){
                     reportName += "PROM_"+gr.getClave();
                     reportFile = new File(context.getRealPath("/")+"reportes/notasPromedio.jasper"); //obtenemos el archivo .jasper
                 }else{
                     reportName += gr.getClave();
-                    String path = context.getRealPath("/")+"reportes/notas.jasper";
+                    String path = context.getRealPath("/")+"reportes/notas/notas_detalle.jasper";
                     reportFile = new File(path); //obtenemos el archivo .jasper
                 }
                 Map parameters = new HashMap(); //sirve como lista para los parámetros, método put(nombre_param, param) para agregar parámetros
@@ -95,8 +117,12 @@ public class Reportes extends HttpServlet {
 ////                if(jasperReport.get != 0){
 //                jasperReport.setWhenNoDataType(WhenNoDataTypeEnum.NO_PAGES);
                 parameters.put("idgrupo", Integer.parseInt(request.getParameter("id")));
+                parameters.put("haveObservaciones", haveObservaciones);
+                parameters.put("haveSino", haveSino);
+                parameters.put("haveCuantitativas", haveCuantitativas);
+                parameters.put("haveCualitativas", haveCualitativas);
                 parameters.put("materia", gr.getMateria());
-                parameters.put("numerogrupo", gr.getNumero_grupo());
+                parameters.put("grupo", gr.getNumero_grupo());
                 parameters.put("instructor", gr.getInstructor());
                 parameters.put("catedratico", gr.getCatedratico());
                 parameters.put("ciclo", gr.getCiclo());
@@ -137,6 +163,23 @@ public class Reportes extends HttpServlet {
             Operaciones.cerrarConexion();
         }
     }
+    
+    public boolean verificarTipo (String[][] rs, String tipo){
+        boolean found = false;
+        
+        for(String[] col: rs){
+            for(String row: col){
+                if(row.equals(tipo)){
+                    found = true;
+                    break;
+                }
+            }
+            if(found) break;
+        }
+        
+        return found;
+    }           
+            
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
