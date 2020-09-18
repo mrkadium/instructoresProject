@@ -60,10 +60,10 @@ SELECT
 		idliteral = a.idliteral
 		AND idvaloracion = (SELECT x.idvaloracion FROM valoracion x WHERE x.valoracion = "Necesita mejorar")
         AND idevaluacion IN (SELECT x.idevaluacion FROM evaluacion x WHERE x.idgrupo = d.idgrupo)) AS "Necesita mejorar",
-	(SELECT ROUND(AVG(calificacion),2) FROM literal_evaluacion WHERE idliteral = a.idliteral
-    AND idevaluacion IN (SELECT x.idevaluacion FROM evaluacion x WHERE x.idgrupo = d.idgrupo)) AS "Promedio"
+	(ROUND(AVG(v.puntaje),2)) AS 'Promedio'
 FROM literal_evaluacion a
 INNER JOIN literal b ON a.idliteral = b.idliteral
+INNER JOIN valoracion v ON a.idvaloracion = v.idvaloracion
 INNER JOIN tipo e ON b.idtipo = e.idtipo
 INNER JOIN evaluacion c ON a.idevaluacion = c.idevaluacion
 INNER JOIN grupo d ON c.idgrupo = d.idgrupo
