@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--ff-main);
+}
+body{
+    color: var(--fc-light);
+}
+.tablas{
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+    padding: 20px 0;
+}
+.tablas h1{
+    text-align: center;
+}
+.tabla{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 10px;
+}
+#table01{
+    background-color: #fff;
+    border-collapse: collapse;
+    width: 100%;
+}
+#table01 thead{
+    background-color: var(--color-darker-light);
+    color: var(--color-white);
+    border-radius: 10px;
+}
+#table01 thead th,
+#table01 tbody td{
+    padding: 10px;
+    text-align: left;
+}
+#table01 tbody tr{
+    border-bottom: 1px solid var(--color-light-gray);
+}
+#table01 tbody tr:hover,
+#table01 tbody tr:focus{
+    background-color: var(--color-light-light);
+}
+#table01 tbody td a.btn{
+    color: var(--fc-light);
+    font-size: 16px;
+    cursor: pointer;
+}
+#table01 tbody td a.btn:hover{
+    color: var(--color-darker-light);
+}
+
+/* #table01 tr th:first-child,
+#table01 tr td:first-child{
+    position: sticky;
+    left: 0;
+} */
+
+.tablas__top-panel{
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    /* grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto); */
+    justify-items: center;
+}
+.page-controls{
+    /* grid-column: 1 / -1;
+    grid-row: 1 / 2; */
+
+    display: flex;
+    align-items: center;
+}
+.page-controls button{
+    background-color: var(--color-darker-light);
+    border: 0;
+    padding: 5px;
+    margin: 0 10px;
+    color: var(--color-white);
+    cursor: pointer;
+}
+.page-controls p span,
+.rows-info p span{
+    font-weight: bold;
+}
+
+.rows-to-show-container{
+    /* justify-self: start; */
+}
+#rows-to-show,
+#search,
+.table-filters select{
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px solid var(--color-light-gray);
+}
+#rows-to-show{
+    cursor: pointer;
+}
+#reset{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background-color: var(--color-white);
+    border: none;
+    border: 1px solid var(--color-darker-light);
+    border-radius: 10px;
+    color: var(--color-darker-light);
+    transition: 
+        background-color .2s ease-in-out,
+        color .2s ease-in-out;
+}
+#reset:hover{
+    background-color: var(--color-darker-light);
+    color: var(--color-white);
+}
+#search{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.search-container{
+    /* justify-self: end; */
+}
+
+.table-filters{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.filter label{
+    display: block;
+    text-align: center;
+}
+
+.tablas__bottom-panel{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.pages{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+.pages a{
+    color: var(--color-darker-light);
+    margin: 0 5px;
+    text-decoration: none;
+}
+.pages__prev a:hover, 
+.pages__next a:hover{
+    text-decoration: underline;
+}
+.pages__numbers a{
+    padding: 5px;
+    border: 1px solid var(--color-darker-light);
+    transition: background-color .2s ease, color .2s ease;
+}
+.pages__numbers a:hover{
+    background-color: var(--color-darker-light);
+    color: var(--color-white);
+}
+.pages__numbers a.current{
+    background-color: var(--color-darker-light);
+    color: var(--color-white);
+}
+
+
+
+.hide,
+.pagination-hide{
+    display: none;
+}
+
+@media (min-width: 600px){
+    #reset{
+        width: unset;
+        align-self: center;
+        cursor: pointer;
+    }
+    .pages{
+        display: flex;
+    }
+}
+@media (min-width: 900px){
+    .tablas h1{
+        /* text-align: left; */
+    }
+    #table01 tbody tr i{
+        opacity: 0;
+    }
+    #table01 tbody tr:hover i{
+        opacity: 1;
+    }
+    .tablas__top-panel{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: unset;
+    }
+    .page-controls{
+        grid-column: unset;
+        grid-row: unset;
+    }
+    .table-filters{
+        grid-column: 1 / -1;
+    }
+
+    .tablas__bottom-panel{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
