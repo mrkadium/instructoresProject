@@ -44,6 +44,9 @@ body{
 #table01 tbody tr:focus{
     background-color: var(--color-light-light);
 }
+#table01 tbody td a{
+    color: var(--color-darker-light);
+}
 #table01 tbody td a.btn{
     color: var(--fc-light);
     font-size: 16px;
