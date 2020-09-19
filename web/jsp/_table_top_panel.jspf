@@ -1,0 +1,45 @@
+<div class="tablas__top-panel">
+    <div class="page-controls">
+        <button class="prev" onclick="prevPage()"><i class="fas fa-arrow-left"></i></button>
+        <p>Página <span class="current-page">1</span> de <span class="total-pages">3</span></p>
+        <button class="next" onclick="nextPage()"><i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="rows-to-show-container">
+        <label for="rows-to-show">Registros mostrados:</label>
+        <select id="rows-to-show">
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <option value="24">24</option>
+        </select>
+    </div>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Buscar...">
+    </div>
+    <div class="table-filters">
+        <div>
+            <select class="filter-field" name="filter-instructor" id="filter-instructor">
+                <option value="0">-- Filtrar por Instructor --</option>
+                <c:forEach var="c" items="${Instructores}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <select class="filter-field" name="filter-catedratico" id="filter-catedratico">
+                <option value="0">-- Filtrar por Catedrático --</option>
+                <c:forEach var="c" items="${Catedraticos}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <select class="filter-field" name="filter-ciclo" id="filter-ciclo">
+                <option value="0">-- Filtrar por ciclo --</option>
+                <c:forEach var="c" items="${Ciclos}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <button id="reset">Reset</button>
+    </div>
+</div>
