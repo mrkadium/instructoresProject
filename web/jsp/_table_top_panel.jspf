@@ -16,30 +16,3 @@
         <input type="text" id="search" placeholder="Buscar...">
     </div>
     <div class="table-filters">
-        <div>
-            <select class="filter-field" name="filter-instructor" id="filter-instructor">
-                <option value="0">-- Filtrar por Instructor --</option>
-                <c:forEach var="c" items="${Instructores}">
-                    <option value="${c}">${c}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div>
-            <select class="filter-field" name="filter-catedratico" id="filter-catedratico">
-                <option value="0">-- Filtrar por Catedrático --</option>
-                <c:forEach var="c" items="${Catedraticos}">
-                    <option value="${c}">${c}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div>
-            <select class="filter-field" name="filter-ciclo" id="filter-ciclo">
-                <option value="0">-- Filtrar por ciclo --</option>
-                <c:forEach var="c" items="${Ciclos}">
-                    <option value="${c}">${c}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <button id="reset">Reset</button>
-    </div>
-</div>

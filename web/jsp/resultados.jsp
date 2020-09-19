@@ -7,58 +7,32 @@
     }
 </style>
 <%@include file="../jsp/_nav.jsp"%>
-
-<!--<main>
-    <div class="fondo">
-        <div class="header">
-            <c:if test="${error != null}">
-                <p style="color: red"> ${error}</p>
-            </c:if>
-            <h1>Lista de grupos</h1>
-        </div>
-        <div class="results">
-            <form class="results__filter" action="">
-                <input type="text" id="buscar" oninput="hideRows(this, 'Ciclo', false)" autocomplete="off" placeholder="Buscar...">
-                <select name="" id="category" onchange="hideRows(this, 'Ciclo')" title="Ciclo">
-                    <option value="0">-- Filtrar por ciclo --</option>
-                    <c:forEach var="c" items="${Ciclos}">
-                        <option value="${c}">${c}</option>
-                    </c:forEach>
-                </select>
-                <select name="" id="category" onchange="hideRows(this, 'Instructor')" title="Instructor">
-                    <option value="0">-- Filtrar por instructor --</option>
-                    <c:forEach var="i" items="${Instructores}">
-                        <option value="${i}">${i}</option>
-                    </c:forEach>
-                </select>
-                <input onclick="clear()" type="reset" id="reset"value="Quitar filtro">
-            </form>
-            <div class="results__total">
-                <p>Resultados</p>
-                <span>${pag.getTotalRecords()}</span>
-            </div>
-            <div class="results__info">
-                <p>Mostrados</p>
-                <span>${pag.getCurrentLowerLimit()} - ${pag.getCurrentUpperLimit()}</span>
-            </div>
-            <div class="results__pagination">
-                <p>Página</p>
-                <button class="prev" onclick="pageChange('${pageContext.servletContext.contextPath}/Principal?accion=resultados&pag_number=${pag.getPrevPage()}')">&lt;</button>
-                <span>${pag.getCurrentPage()}/${pag.getTotalPages()}</span>
-                <button class="next" onclick="pageChange('${pageContext.servletContext.contextPath}/Principal?accion=resultados&pag_number=${pag.getNextPage()}')">&gt;</button>
-            </div>
-        </div>
-        <div class="tablas">
-            ${tabla}
-        </div>        
-    </div>
-</main>-->
-            
     <div class="tablas">
         <h1>Grupos de instructoría</h1>
-        <%@include file="../jsp/_table_top_panel.jspf"%>        
-        <div class="tabla">            
-            ${tabla}
+        <%@include file="../jsp/_table_top_panel.jspf"%>
+        <div>
+            <select class="filter-field" name="filter-instructor" id="filter-instructor">
+                <option value="0">-- Filtrar por Instructor --</option>
+                <c:forEach var="c" items="${Instructores}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <select class="filter-field" name="filter-catedratico" id="filter-catedratico">
+                <option value="0">-- Filtrar por Catedrático --</option>
+                <c:forEach var="c" items="${Catedraticos}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div>
+            <select class="filter-field" name="filter-ciclo" id="filter-ciclo">
+                <option value="0">-- Filtrar por ciclo --</option>
+                <c:forEach var="c" items="${Ciclos}">
+                    <option value="${c}">${c}</option>
+                </c:forEach>
+            </select>
         </div>
         <%@include file="../jsp/_table_bottom_panel.jspf"%> 
     </div>

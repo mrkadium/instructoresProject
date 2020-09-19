@@ -1,3 +1,9 @@
+        <button id="reset">Reset</button>
+    </div>
+</div>
+<div class="tabla">            
+    ${tabla}
+</div>
 <div class="tablas__bottom-panel">
     <div class="rows-info">
         <p><span class="rows-bottom-limit"></span> al <span class="rows-top-limit"></span> de <span class="total-rows"></span> registros</p>
