@@ -57,8 +57,8 @@ public class Materias extends HttpServlet {
                 }
                 
                 
-                Pagination p = new Pagination(materias[0].length, 10, request);
-                request.setAttribute("pag", p);
+//                Pagination p = new Pagination(materias[0].length, 10, request);
+//                request.setAttribute("pag", p);
                 
                 
                 String sqlcarrera = "select * from carrera";
@@ -78,8 +78,8 @@ public class Materias extends HttpServlet {
                 "Carrera"
                 };                
                 Tabla tab = new Tabla(materias,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
-                tab.setLimiteInferior(p.getCurrentLowerLimit());
-                tab.setLimiteSuperior(p.getCurrentUpperLimit());
+//                tab.setLimiteInferior(p.getCurrentLowerLimit());
+//                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 tab.setEliminable(true);
                 tab.setModificable(true);
                 tab.setPageContext(request.getContextPath());

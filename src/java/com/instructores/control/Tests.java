@@ -56,8 +56,8 @@ public class Tests extends HttpServlet {
                 
                 
                 
-                Pagination p = new Pagination(test[0].length, 10, request);
-                request.setAttribute("pag", p);
+//                Pagination p = new Pagination(test[0].length, 10, request);
+//                request.setAttribute("pag", p);
                 
                 
                 //declaracion de cabeceras a usar en la tabla HTML
@@ -72,8 +72,8 @@ public class Tests extends HttpServlet {
                 Tabla.STYLE.TABLE01, //estilo de la tabla
                 Tabla.ALIGN.LEFT, // alineacion de la tabla
                 cabeceras); //array con las cabeceras de la tabla
-                tab.setLimiteInferior(p.getCurrentLowerLimit());
-                tab.setLimiteSuperior(p.getCurrentUpperLimit());
+//                tab.setLimiteInferior(p.getCurrentLowerLimit());
+//                tab.setLimiteSuperior(p.getCurrentUpperLimit());
                 //boton eliminar
                 tab.setEliminable(true);
                 //boton actualizar
