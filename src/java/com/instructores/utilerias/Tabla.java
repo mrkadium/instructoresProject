@@ -34,6 +34,7 @@ public class Tabla {
     private String cabeceraEliminable;
     private String cabeceraSeleccionable;
     private String cabeceraImprimible;
+    private String cabeceraCopiable;
     
     private boolean modificable;
     private boolean eliminable;
@@ -77,6 +78,7 @@ public class Tabla {
        cabeceraModificable = "";
        cabeceraEliminable = "";
        cabeceraImprimible = "";
+       cabeceraCopiable = "";
        
        anchocolumnas = null;
        modificable = false;
@@ -116,6 +118,7 @@ public class Tabla {
        cabeceraModificable = "";
        cabeceraEliminable = "";
        cabeceraImprimible = "";
+       cabeceraCopiable = "";
        
        modificable = false;
        eliminable = false;
@@ -162,7 +165,7 @@ public class Tabla {
         }
         if(isCopiable()){
             cab +="<th>";
-            cab += "Copiar";
+            cab += getCabeceraCopiable();
             cab +="</th>";
         }
         if (isEliminable())
@@ -523,6 +526,7 @@ public class Tabla {
     public String getPaginaCopiable(){return pageContext + paginaCopiable;}
     public String getIconoCopiable(){return iconoCopiable;}
     public void setDir_Port(String dir_port){this.dir_port = dir_port;}
+    public String getCabeceraCopiable(){ return this.cabeceraCopiable; }
     public String getDir_Port(){return dir_port;}
     
 }

@@ -436,8 +436,8 @@ public class Principal extends HttpServlet {
                 };
                 
                 Tabla tab = new Tabla(grupos,"80%",Tabla.STYLE.TABLE01,Tabla.ALIGN.LEFT,cabeceras);
-                tab.setLimiteInferior(p.getCurrentLowerLimit());
-                tab.setLimiteSuperior(p.getCurrentUpperLimit());                
+                //tab.setLimiteInferior(p.getCurrentLowerLimit());
+                //tab.setLimiteSuperior(p.getCurrentUpperLimit());                
                 tab.setCopiable(true);
                 tab.setDir_Port(request.getServerName()+":"+request.getServerPort());
                 tab.setPaginaCopiable("/Login?accion=loginEst&txtClave=");
@@ -445,13 +445,13 @@ public class Principal extends HttpServlet {
                 tab.setModificable(true);
                 tab.setPaginaModificable("/Principal?accion=grupo");
                 tab.setIconoModificable(Tabla.ICON.VER_MAS);
-                tab.setCabeceraModificable("Ver más");
+                //tab.setCabeceraModificable("Ver más");
                 String rol = request.getSession().getAttribute("nombre_rol").toString();
                 if(rol.equals("admin") || rol.equals("decano")){
                     tab.setImprimible(true);
                     tab.setPaginaImprimible("/Reportes?accion=detalle");
                     tab.setIconoImprimible(Tabla.ICON.IMPRIMIR);
-                    tab.setCabeceraImprimible("Reporte");
+                    //tab.setCabeceraImprimible("Reporte");
                 }
 //                tab.setSeleccionable(true);
 //                tab.setPaginaSeleccionable("/Reportes?accion=detalle");
