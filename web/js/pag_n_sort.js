@@ -92,7 +92,7 @@ function removeSpecialCharacters(text) { //Takes the special characters of the t
     return text.normalize('NFD').replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, "$1$2").normalize();
 }
 function filter(text){
-    let textToFilter = removeSpecialCharacters(text); //text without special characters and lower-cased
+    let textToFilter = removeSpecialCharacters(text.toLowerCase()); //text without special characters and lower-cased
     table_rows = Array.from(table.querySelectorAll('tbody tr')); //all the rows
 
     table_rows.forEach(row => { //for each row
