@@ -4,7 +4,7 @@
 <%@include file="../jsp/_nav.jsp"%>
 <%@include file="../jsp/_toast.jspf"%>
     <div class="tablas">
-        <h1>Grupos de instructoría</h1>
+        <h1>Lista de carreras</h1>
         <%@include file="../jsp/_table_top_panel.jspf"%>
         <div>
             <select class="filter-field" name="filter-instructor" id="filter-instructor">

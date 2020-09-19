@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="img/Logo-USO.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="css/css/stylePrincipal.css">
-    <link rel="stylesheet" href="css/css/styleTable.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/custom_properties.css">
+    <link rel="stylesheet" href="css/pag_n_sort.css">
+    <script src="js/new.js"></script>
     <style>
         #table01 tbody tr:hover{
             cursor: pointer;
@@ -17,20 +17,13 @@
     </style>
     <title>Seleccionar</title>
 </head>
-<body>        
-    <main>
-        <div class="fondo">
-            <div class="header">
-                <h1>Selección de padre</h1>
-                <form action="">
-                    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar...">
-                </form>
-            </div>
-            <div class="tablas">
-                ${tabla}
-            </div>
-        </div>
-    </main>            
+<body>
+    <div class="tablas">
+        <h1>Seleccionar padre</h1>
+        <%@include file="../jsp/_table_top_panel.jspf"%>
+        <%@include file="../jsp/_table_bottom_panel.jspf"%> 
+    </div>
+    <script src="js/pag_n_sort.js"></script>           
     <script>
         //funcion javascript que se ejecuta al hacer click en una fila
         //recibe un elemento de tipo fila como parametro: row

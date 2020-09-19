@@ -4,9 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="css/tabla.css" media="screen" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet" href="css/css/stylePrincipal.css">
+        <link rel="stylesheet" href="css/custom_properties.css">
+        <link rel="stylesheet" href="css/pag_n_sort.css">
         <style>
             #table01 td{ padding-top: 8px; cursor: pointer}
         </style>
