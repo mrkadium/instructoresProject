@@ -45,8 +45,10 @@ if(button_gen_pwd){
     });
 }
 
-if(gen_pwd_out.tagName == 'INPUT'){
-    gen_pwd_out.value = gen_pwd_out.value.length == 0 ? generatePassworwd() : gen_pwd_out.value;
-}else{
-    gen_pwd_out.innerText = gen_pwd_out.innerText.length == 0 ? generatePassworwd() : gen_pwd_out.innerText;
-} 
+if(gen_pwd_out){    
+    if(gen_pwd_out.tagName == 'INPUT'){
+        gen_pwd_out.value = gen_pwd_out.value.length == 0 ? generatePassworwd() : gen_pwd_out.value;
+    }else{
+        gen_pwd_out.innerText = gen_pwd_out.innerText.length == 0 ? generatePassworwd() : gen_pwd_out.innerText;
+    } 
+}
