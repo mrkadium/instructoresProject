@@ -1,5 +1,6 @@
 <%@include file="../jsp/_head.jsp"%>
-<link rel="stylesheet" href="css/css/styleTable.css">
+<link rel="stylesheet" href="css/custom_properties.css">
+<link rel="stylesheet" href="css/pag_n_sort.css">
 <style>
     .btn:hover{
         cursor: pointer;
@@ -7,7 +8,7 @@
 </style>
 <%@include file="../jsp/_nav.jsp"%>
 
-<main>
+<!--<main>
     <div class="fondo">
         <div class="header">
             <c:if test="${error != null}">
@@ -51,7 +52,18 @@
             ${tabla}
         </div>        
     </div>
-</main>
+</main>-->
+            
+    <div class="tablas">
+        <h1>Grupos de instructoría</h1>
+        <%@include file="../jsp/_table_top_panel.jspf"%>        
+        <div class="tabla">            
+            ${tabla}
+        </div>
+        <%@include file="../jsp/_table_bottom_panel.jspf"%> 
+    </div>
+    <script src="js/pag_n_sort.js"></script>
+    
 <script>
     function abrirVentana(URL){
         window.open(URL);
