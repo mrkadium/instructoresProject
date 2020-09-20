@@ -119,6 +119,30 @@ body{
         background-color .2s ease-in-out,
         color .2s ease-in-out;
 }
+.new{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: var(--color-darker-light);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.233);
+}
+.new::before{
+    opacity: 0;
+    content: "Nuevo";
+    position: absolute;
+    font-size: 16px;
+    color: var(--color-darker-light);
+    transform: translateY(-40px);
+}
 #reset:hover{
     background-color: var(--color-darker-light);
     color: var(--color-white);
@@ -186,6 +210,18 @@ body{
     display: none;
 }
 
+@keyframes pulse{
+    from{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.05);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
 @media (min-width: 600px){
     #reset{
         width: unset;
@@ -197,8 +233,27 @@ body{
     }
 }
 @media (min-width: 900px){
+    .tablas{
+        min-height: 100vh;
+    }
     .tablas h1{
         /* text-align: left; */
+    }
+    .new{
+        position: unset;
+        width: 30px;
+        height: 30px;
+    }
+    .new::before{
+        opacity: 0;
+        transition: opacity .2s ease, transform .2s ease-in-out;
+        transform: translateX(50px);
+    }
+    .new:hover{
+        animation: pulse 2s infinite;
+    }
+    .new:hover::before{
+        opacity: 1;
     }
     #table01 tbody tr i{
         opacity: 0;
