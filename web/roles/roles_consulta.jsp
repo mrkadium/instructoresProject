@@ -4,7 +4,7 @@
 <%@include file="../jsp/_nav.jsp"%>
 <%@include file="../jsp/_toast.jspf"%>
     <div class="tablas">
-        <h1>Lista de roles</h1>
+        <h1>Lista de roles <a href="${pageContext.servletContext.contextPath}/Roles?accion=insertar" class="new">+</a></h1>
         <%@include file="../jsp/_table_top_panel.jspf"%>
         <%@include file="../jsp/_table_bottom_panel.jspf"%> 
     </div>

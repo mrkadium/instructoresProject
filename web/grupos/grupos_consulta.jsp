@@ -4,7 +4,7 @@
 <%@include file="../jsp/_nav.jsp"%>
 <%@include file="../jsp/_toast.jspf"%>
     <div class="tablas">
-        <h1>Lista de grupos</h1>
+        <h1>Lista de grupos <a href="${pageContext.servletContext.contextPath}/Grupos?accion=insertar" class="new">+</a></h1>
         <%@include file="../jsp/_table_top_panel.jspf"%>
         <%@include file="../jsp/_table_bottom_panel.jspf"%> 
     </div>

@@ -4,7 +4,7 @@
 <%@include file="../jsp/_nav.jsp"%>
 <%@include file="../jsp/_toast.jspf"%>
     <div class="tablas">
-        <h1>Lista de plantillas de test</h1>
+        <h1>Lista de plantillas de test <a href="${pageContext.servletContext.contextPath}/Plantillas_test?accion=insertar" class="new">+</a></h1>
         <%@include file="../jsp/_table_top_panel.jspf"%>
         <%@include file="../jsp/_table_bottom_panel.jspf"%> 
     </div>

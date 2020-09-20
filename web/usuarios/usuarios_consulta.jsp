@@ -4,7 +4,7 @@
 <%@include file="../jsp/_nav.jsp"%>
 <%@include file="../jsp/_toast.jspf"%>
     <div class="tablas">
-        <h1>Lista de usuarios</h1>
+        <h1>Lista de usuarios <a href="${pageContext.servletContext.contextPath}/Usuarios?accion=insertar" class="new">+</a></h1>
         <%@include file="../jsp/_table_top_panel.jspf"%>
         <div>
             <select class="filter-field" name="filter-instructor" id="filter-instructor">
