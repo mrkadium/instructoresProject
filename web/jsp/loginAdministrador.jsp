@@ -46,11 +46,11 @@
                     </c:if>
                     <div>
                         <label for="usuario">Usuario:</label>
-                        <input type="text" name="usuario" id="usuario" placeholder="Ejemplo: mario.olivo" autofocus>
+                        <input type="text" name="txtUsuario" id="usuario" placeholder="Ejemplo: mario.olivo" autofocus>
                     </div>
                     <div>
                         <label for="clave">Contraseña:</label>
-                        <input type="password" name="clave" id="clave" placeholder="*********">
+                        <input type="password" name="txtContra" id="clave" placeholder="*********">
                     </div>
                     <input type="submit" value="Ingresar">
                     <p>¿No es administrador?</p>

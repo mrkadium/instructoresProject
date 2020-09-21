@@ -57,7 +57,7 @@
                     </c:if>
                     <div>
                         <label for="codigo">Código:</label>
-                        <input type="text" name="codigo" id="codigo" placeholder="Ejemplo: xYlHmNoRqW" autofocus>
+                        <input type="text" name="txtClave" id="codigo" placeholder="Ejemplo: xYlHmNoRqW" autofocus>
                     </div>
                     <input type="submit" value="Ingresar">
                     <p>¿Es administrador?</p>
