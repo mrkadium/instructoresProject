@@ -20,9 +20,13 @@
                     <label for="cmbTipo">Tipo:</label>
                     <select name="cmbTipo" id="cmbTipo">
                         <c:forEach var="t" items="${Tipos}">
-                            <option value="${t.idtipo}">${t.tipo}</option>
+                            <option value="${t.idtipo}" ${valoracion.idtipo == t.idtipo ? 'selected' : ''}>${t.tipo}</option>
                         </c:forEach>
                     </select>
+                </div>
+                <div>
+                    <label for="txtPuntaje">Puntaje</label>
+                    <input type="text" required id="txtPuntaje" name="txtPuntaje" value="${valoracion.puntaje}" />
                 </div>
                 <div class="submit">
                     <input type="submit" value="Enviar" name="" id="">

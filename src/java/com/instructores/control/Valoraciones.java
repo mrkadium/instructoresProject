@@ -8,6 +8,7 @@ import com.instructores.utilerias.Tabla;
 import com.instructores.utilerias.Tabla.ICON;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,11 @@ public class Valoraciones extends HttpServlet {
                 if(request.getParameter("txtBusqueda")!=null) {
                 sql =   "select * from valoracion where valoracion like ?";
                 } else {
-                sql =   "select * from valoracion";
+                sql =   
+                    "SELECT \n" +
+                    "	a.idvaloracion, a.valoracion, b.tipo, IFNULL(a.puntaje, '-') AS puntaje\n" +
+                    "FROM valoracion a\n" +
+                    "INNER JOIN tipo b ON a.idtipo = b.idtipo;";
                 }
                 String[][] valoraciones = null;
                 if(request.getParameter("txtBusqueda")!=null) {
@@ -61,7 +66,8 @@ public class Valoraciones extends HttpServlet {
                 String[] cabeceras = new String[]{
                 "ID Valoración",
                 "Valoración",
-                "Ponderación"
+                "Tipo",
+                "Puntaje"
                 };
                 //variable de tipo Tabla para generar la Tabla HTML
                 Tabla tab = new Tabla(valoraciones, //array que contiene los datos
@@ -112,6 +118,35 @@ public class Valoraciones extends HttpServlet {
             }
             //request.getRequestDispatcher("paises/paises_consulta.jsp").forward(request, response);
         } else if(accion.equals("insertar")) {
+            try {
+                Conexion conn = new ConexionPool();
+                conn.conectar();
+                Operaciones.abrirConexion(conn);
+                Operaciones.iniciarTransaccion();
+                
+                String sql = "select * from tipo";
+                List<Tipo> listaTipos = new ArrayList();
+                String[][] rs = Operaciones.consultar(sql, new ArrayList());
+                for(int i=0; i<rs[0].length; i++){
+                    Tipo p = new Tipo(Integer.parseInt(rs[0][i]), rs[1][i], rs[2][i]);
+                    listaTipos.add(p);
+                }
+                request.setAttribute("Tipos", listaTipos);
+                
+                Operaciones.commit();
+            } catch(Exception ex) {
+                try {
+                    Operaciones.rollback();
+                } catch (SQLException ex1) {
+                    Logger.getLogger(Valoraciones.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            } finally {
+                try {
+                    Operaciones.cerrarConexion();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Valoraciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             request.getRequestDispatcher("valoraciones/insertar_modificar.jsp").forward(request, response);
         } else if(accion.equals("modificar")) {
             try {
@@ -120,15 +155,17 @@ public class Valoraciones extends HttpServlet {
                 Operaciones.abrirConexion(conn);
                 Operaciones.iniciarTransaccion();
                 
-                List<Valoracion> valoracion = new ArrayList();
-                List<Object> param = new ArrayList();
-                param.add(Integer.parseInt(request.getParameter("id")));
-                String[][] rsuser = Operaciones.consultar("select * from valoracion where idvaloracion = ?", param);
-                for(int i=0; i<rsuser[0].length; i++){
-                    Valoracion v = new Valoracion(Integer.parseInt(rsuser[0][i]), rsuser[1][i], Integer.parseInt(rsuser[2][i]));
-                    valoracion.add(v);
-                }                
-                request.setAttribute("valoracion", valoracion.get(0));                
+                Valoracion c = Operaciones.get(Integer.parseInt(request.getParameter("id")), new Valoracion());
+                request.setAttribute("valoracion", c);       
+                
+                String sql = "select * from tipo";
+                List<Tipo> listaTipos = new ArrayList();
+                String[][] rs = Operaciones.consultar(sql, new ArrayList());
+                for(int i=0; i<rs[0].length; i++){
+                    Tipo p = new Tipo(Integer.parseInt(rs[0][i]), rs[1][i], rs[2][i]);
+                    listaTipos.add(p);
+                }
+                request.setAttribute("Tipos", listaTipos);
                 
                 Operaciones.commit();
             } catch(Exception ex) {
@@ -186,7 +223,8 @@ public class Valoraciones extends HttpServlet {
             case "insertar_modificar": {
                 String idvaloracion = request.getParameter("txtIdvaloracion");
                 String valoracion = request.getParameter("txtValoracion");
-                String idtipo = request.getParameter("txtPonderacion");
+                String idtipo = request.getParameter("cmbTipo");
+                String puntaje = request.getParameter("txtPunjate");
                 try {
                     Conexion conn = new ConexionPool();
                     conn.conectar();
@@ -194,7 +232,7 @@ public class Valoraciones extends HttpServlet {
                     Operaciones.iniciarTransaccion();
                     
                     if(idvaloracion!=null && !idvaloracion.equals("")) {
-                        Valoracion v = new Valoracion(Integer.parseInt(idvaloracion), valoracion, Integer.parseInt(idtipo));
+                        Valoracion v = new Valoracion(Integer.parseInt(idvaloracion), valoracion, Integer.parseInt(idtipo), new BigDecimal(puntaje));
                         v = Operaciones.actualizar(v.getIdvaloracion(), v);
                         if(v.getIdvaloracion()!=0) {
                             request.getSession().setAttribute("resultado", 1);

@@ -1,6 +1,7 @@
 package com.instructores.entidad;
 
 import com.instructores.anotaciones.*;
+import java.math.BigDecimal;
 
 @Entity(table="valoracion")
 public class Valoracion {
@@ -9,14 +10,16 @@ public class Valoracion {
     private int idvaloracion;
     private String valoracion;
     private int idtipo;
+    private BigDecimal puntaje;
 
     public Valoracion() {
     }
 
-    public Valoracion(int idvaloracion, String valoracion, int idtipo) {
+    public Valoracion(int idvaloracion, String valoracion, int idtipo, BigDecimal puntaje) {
         this.idvaloracion = idvaloracion;
         this.valoracion = valoracion;
         this.idtipo = idtipo;
+        this.puntaje = puntaje;
     }
 
     public int getIdvaloracion() {
@@ -41,6 +44,14 @@ public class Valoracion {
 
     public void setIdtipo(int idtipo) {
         this.idtipo = idtipo;
+    }
+
+    public BigDecimal getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(BigDecimal puntaje) {
+        this.puntaje = puntaje;
     }
     
 }
