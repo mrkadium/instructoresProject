@@ -17,8 +17,10 @@
                     <input type="text" required id="txtUsuario" name="txtUsuario" value="${usuario.usuario}" />
                 </div>
                 <div>
-                    <label for="txtClave">Clave:</label>
-                    <input type="text" required id="txtClave" name="txtClave" value="${usuario.clave}" />
+                    <label for="txtClave"><span>*</span>Clave:</label>
+                    <input type="text" name="txtClave" id="txtClave" autocomplete="off" disabled><br>
+                    <input type="checkbox" name="" class="side_checkbox" id="change_pwd">
+                    <label class="side_checkbox__label" for="change_pwd">Modificar</label>
                 </div>
                 <div>
                     <label for="txtNombres">Nombres:</label>
@@ -52,5 +54,14 @@
         </div>
     </div>
 </main>
+                <script>
+    const change_pwd__textbox = change_pwd.previousElementSibling.previousElementSibling;
+    change_pwd.addEventListener('change',function(){
+        change_pwd.checked ? 
+        change_pwd__textbox.removeAttribute("disabled") : 
+        change_pwd__textbox.setAttribute("disabled", true);
+        change_pwd__textbox.focus();
+    });
+</script>
          
 <%@include file="../jsp/_footer.jsp"%>
