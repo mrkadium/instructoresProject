@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/09/2020, 12:56:19 PM
+    Author     : Usuario
+*/
+
+.toast{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    border-radius: 20px;
+    max-width: 260px;
+    text-align: center;
+
+    background-color: rgba(83, 83, 83, 0.753);
+    padding: 12px 20px;
+    color: white;
+    letter-spacing: .7px;
+
+    animation-name: toast-appear;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes toast-appear{
+    from{
+        opacity: 0;
+        top: -10px;
+    }
+    25%{
+        opacity: 1;
+        top: 20px;
+    }
+    75%{
+        opacity: 1;
+        top: 20px;
+    }
+    to{
+        opacity: 0;
+        top: 50px;
+    }
+}

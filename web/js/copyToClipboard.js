@@ -9,9 +9,6 @@ function copyToClipboard(e, column_index, link){
     col.innerHTML +=
     `<input type='text' style='margin:0;padding:0;border:0;width:0;font-size:1px;' value='${link}${col.textContent}' />`;            
     let text = col.firstElementChild;
-    text.select();
-    text.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    alert('Link copiado: '+text.value);
-    text.remove();
+    copy(text, true);
+    buildToast('Link copiado a portapapeles', 3000);
 }

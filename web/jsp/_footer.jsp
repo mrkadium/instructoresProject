@@ -8,6 +8,8 @@
     </footer>
     <script src="js/gen_pwd.js"></script>
     <!--<script src="js/table_search.js"></script>-->
+    <script src="js/copy_to_clip.js"></script>
+    <script src="js/toast.js"></script>
     <script src="js/copyToClipboard.js"></script>
     <script>
         function abrirVentana(URL){
