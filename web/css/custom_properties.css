@@ -8,6 +8,8 @@
     --input-bgc: rgb(245,245,245);
     --tr-alter-clr: rgb(250,250,250);
     --color-white: white;
+    --color-error: crimson;
+    --color-error-light: indianred;
 
     --ff-main: "Poppins", sans-serif;
     --fz-main: 0.8em;
