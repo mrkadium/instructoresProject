@@ -8,6 +8,7 @@ import com.instructores.utilerias.Cantidad_Tipo;
 import com.instructores.utilerias.Hash;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -195,7 +196,8 @@ public class Login extends HttpServlet {
                     if(rsValoraciones != null){
                         List<Valoracion> getValoraciones = new ArrayList();
                         for(int i=0; i<rsValoraciones[0].length; i++){
-                            Valoracion v = new Valoracion(Integer.parseInt(rsValoraciones[0][i]), rsValoraciones[1][i], Integer.parseInt(rsValoraciones[2][i]));
+                            Valoracion v = new Valoracion(Integer.parseInt(rsValoraciones[0][i]), rsValoraciones[1][i], Integer.parseInt(rsValoraciones[2][i]), 
+                                    rsValoraciones[3][i] != null ? new BigDecimal(rsValoraciones[3][i]) : new BigDecimal("0"));
                             getValoraciones.add(v);
                         }
                         sesion.setAttribute("valoraciones", getValoraciones);
