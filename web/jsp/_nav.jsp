@@ -1,5 +1,6 @@
 </head>
 <body>
+    <div class="toast-container"></div>
     <nav>
         <a href="${pageContext.servletContext.contextPath}/Principal"><img src="img/Logo-USO.png" alt=""></a>
         <div class="desk">
