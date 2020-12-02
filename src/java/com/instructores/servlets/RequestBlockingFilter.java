@@ -34,13 +34,10 @@ public class RequestBlockingFilter implements Filter {
 
         int idrol = 0;
         try{
-            //Se intenta obtener el id de usuario
             idrol = (int)req.getSession().getAttribute("Usuario"); 
         }catch(Exception e){
             idrol = 0;
             req.setAttribute("error", 5);
-            //Si no hay id, se redirecciona al login
-            req.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(req, res); 
         }
 
         //Obtine la lista de los id's de administradores        
@@ -53,16 +50,14 @@ public class RequestBlockingFilter implements Filter {
                     break;
                 }
             }
+            
+            if(!encontrado) //Si no se encontró en la lista, pero hay datos
+                //Significa que no rol administrador, y regresa a la principal
+                req.getRequestDispatcher("Principal").forward(req, res);             
+            else //Si se encontró, es administrador
+                chain.doFilter(request, response); //Deja seguir
         }else //Si la lista está vacía o no hay id, redirecciona al login
             req.getRequestDispatcher("jsp/loginAdministrador.jsp").forward(req, res);
-
-        
-        if(!encontrado && rsAdmins != null) //Si no se encontró en la lista, pero hay datos
-            //Significa que no rol administrador, y regresa a la principal
-            req.getRequestDispatcher("Principal").forward(req, res);             
-        else //Si se encontró, es administrador
-            chain.doFilter(request, response); //Deja seguir
-
     }
 
     public void destroy() {
