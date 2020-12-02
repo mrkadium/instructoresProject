@@ -6,8 +6,8 @@ MODIFY estado ENUM('Habilitado','Inhabilitado','Finalizado') NOT NULL DEFAULT 'H
 
 -- Borrando trigger para no generar automáticamente la clave
 DROP TRIGGER bi_grupo;
-*/
 
 -- Agregar el campo 'puntaje' en la tabla valoracion
 ALTER TABLE valoracion
 ADD COLUMN puntaje DECIMAL(10,2) NULL;
+*/

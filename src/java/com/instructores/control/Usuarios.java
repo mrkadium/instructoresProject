@@ -269,15 +269,13 @@ public class Usuarios extends HttpServlet {
                     Operaciones.iniciarTransaccion();
                     
                     if(idUsuario!=null && !idUsuario.equals("")) {
-                        Usuario u = new Usuario();
-                        String contraAnterior = request.getSession().getAttribute("contra").toString();
-                        
-                        //si la clave es igual a la de antes, no se pone el Hash
-                        if(clave.equals(contraAnterior)){
-                            u = new Usuario(Integer.parseInt(idUsuario), usuario, nombres, apellidos, clave, Integer.parseInt(idRol));
-                        }else{
-                            u = new Usuario(Integer.parseInt(idUsuario), usuario, nombres, apellidos, Hash.generarHash(clave, Hash.SHA256), Integer.parseInt(idRol));
-                        }
+                        Usuario u = Operaciones.get(Integer.parseInt(idUsuario), new Usuario());
+                        String contraAnterior = u.getClave();
+                        if(clave != null){ //si la clave no es nula, significa que se quiere cambiar
+                            String claveHash = Hash.generarHash(clave, Hash.SHA256);      
+                            u = new Usuario(Integer.parseInt(idUsuario), usuario, nombres, apellidos, claveHash, Integer.parseInt(idRol));
+                        }else //si es nula, solo pongo la anterior
+                            u = new Usuario(Integer.parseInt(idUsuario), usuario, nombres, apellidos, contraAnterior, Integer.parseInt(idRol));
                         
                         u = Operaciones.actualizar(u.getIdusuario(), u);
                         

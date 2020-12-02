@@ -470,6 +470,14 @@ public class Principal extends HttpServlet {
                 }
                 request.setAttribute("Ciclos", ciclos);
                 
+                List<String> catedraticos = new ArrayList();
+                sql = "SELECT CONCAT(nombres,' ',apellidos) AS usuario FROM usuario WHERE idrol IN (SELECT idrol FROM rol WHERE rol = 'admin' OR rol = 'catedratico' OR rol = 'decano');";
+                rs = Operaciones.consultar(sql, null);
+                for(int i=0; i<rs[0].length; i++){
+                    catedraticos.add(rs[0][i]);
+                }
+                request.setAttribute("Catedraticos", catedraticos);
+                
                 request.setAttribute("tabla", tabla01);
                 request.getRequestDispatcher("jsp/resultados.jsp").forward(request, response);
                 
