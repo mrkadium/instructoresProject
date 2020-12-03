@@ -1,4 +1,5 @@
 //ELEMENTS
+let page_name = '';
 let table = document.querySelector('#table01');
 let table_rows = Array.from(table.querySelectorAll('tbody tr:not(.hide)'));
 const tableHeadRow = table.querySelector('thead tr');
@@ -26,7 +27,6 @@ let rows_top_limit_element = document.querySelector('.rows-top-limit');
 const total_rows_element = document.querySelector(".total-rows"); //text showing total rows
 
 //CALLS
-paginate();
 
 //PAGINATION FUNCTIONS
 function paginate(){
@@ -91,13 +91,28 @@ function updatePageLinks(){
 function removeSpecialCharacters(text) { //Takes the special characters of the text away
     return text.normalize('NFD').replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, "$1$2").normalize();
 }
-function filter(text){
-    let textToFilter = removeSpecialCharacters(text.toLowerCase()); //text without special characters and lower-cased
-    table_rows = Array.from(table.querySelectorAll('tbody tr')); //all the rows
+function filter(text = null){
+    updateFilters();
 
+    //map the values from the filters and verify if it's not 0
+    let values = Array.from(filters)
+        .map(filter => removeSpecialCharacters(filter.value.toLowerCase()))
+        .filter(filterValue => filterValue !== '0');
+
+    //filter the values adding the search bar value and verify if it's not empty
+    if(text != null) values.push(removeSpecialCharacters(text.toLowerCase()));
+    values = values.filter(filterValue => filterValue !== '');
+    
+    table_rows = Array.from(table.querySelectorAll('tbody tr')); //all the rows
     table_rows.forEach(row => { //for each row
         let row_text = removeSpecialCharacters(row.textContent.toLowerCase()); //text of the row without special characters and lower-cased
-        if(row_text.search(textToFilter) == '-1'){ //if the row text does not contain the text to filter
+        
+        let valid = true; //initialize the valid
+        values.forEach(textToFilter => {
+            valid = valid && (row_text.search(textToFilter) == -1 ? false : true); //compare with prev          
+        });
+
+        if(!valid){ //if it's true, the row contains all the filter values
             row.classList.add('hide'); //hide that row
         }else{ 
             row.classList.remove('hide'); //remove the class, in case the row already had it
@@ -130,6 +145,51 @@ function cleanFilters(){
     })
 }
 
+//LOCAL STORAGE
+function setFilters(){
+    let filterArray = localStorage.getItem('filterArray');
+    if(filterArray != null){
+        filterArray = JSON.parse(filterArray);
+        let pageFilter = filterArray.filters.filter(f => f.page === page_name);
+        pageFilter[0].values.forEach(f => {
+            document.getElementById(f.id).value = f.value;
+        })
+    }
+}
+function setPage(page){
+    page_name = page;
+    setFilters();
+    updateFilters();
+    paginate();
+    filter();
+}
+function updateFilters(){
+    //create the new filter object
+    let filterObject = {page: page_name};
+    filterObject['values'] = Array.from(filters).map(filter => {
+        let id = filter.id;
+        let value = filter.value;
+        let obj = {'id': id, 'value': value};
+        return obj;
+    });
+    
+    //get items from localStorage
+    let filterArray = localStorage.getItem('filterArray');
+
+    if(filterArray == null){ //if there is no filter yet 
+        filterArray = {}; //create the global obj
+        filterArray['filters'] = []; //create the array in the global obj
+        filterArray.filters.push(filterObject); //add the filter obj to the global obj
+    }else{
+        filterArray = JSON.parse(filterArray); //parse the global obj
+        let filters = filterArray.filters.filter(f => f.page !== page_name); //get all the filters but the one I'm updating
+        filters.push(filterObject); //add the filter obj to the gotten filters
+        filterArray['filters'] = filters; //replace the filters in the global obj for the new ones
+    }
+
+    localStorage.setItem('filterArray', JSON.stringify(filterArray));
+}
+
 //EVENTS
 rows_to_show_element.addEventListener('change', function(){
     rows_to_show = this.value;
@@ -141,10 +201,11 @@ searchInput.addEventListener('input', function(){
 });
 filters.forEach(f => {
     f.addEventListener('change', function(){
-        filter(this.value);
+        filter();
     });
 });
 resetFilters.addEventListener('click', (e) => {
     showRows();
     cleanFilters();
+    updateFilters();
 });

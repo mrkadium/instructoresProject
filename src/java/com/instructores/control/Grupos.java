@@ -125,6 +125,37 @@ public class Grupos extends HttpServlet {
                 String tabla01 = tab.getTabla();
                 request.setAttribute("tabla", tabla01);
                 request.setAttribute("valor", request.getParameter("txtBusqueda"));
+                
+                sql = "SELECT DISTINCT ciclo FROM grupo ORDER BY idgrupo DESC;";
+                List<String> ciclos = new ArrayList();
+                String[][] rs = Operaciones.consultar(sql, null);
+                for(int i=0; i<rs[0].length; i++){
+                    ciclos.add(rs[0][i]);
+                }
+                request.setAttribute("Ciclos", ciclos);
+                
+                List<String> catedraticos = new ArrayList();
+                sql = "SELECT\n" +
+                    "	DISTINCT CONCAT(b.nombres,' ',b.apellidos) AS usuario \n" +
+                    "FROM grupo a, usuario b\n" +
+                    "WHERE a.idcatedratico = b.idusuario;";
+                rs = Operaciones.consultar(sql, null);
+                for(int i=0; i<rs[0].length; i++){
+                    catedraticos.add(rs[0][i]);
+                }
+                request.setAttribute("Catedraticos", catedraticos);
+                
+                List<String> instructores = new ArrayList();
+                sql = "SELECT\n" +
+                    "	DISTINCT CONCAT(b.nombres,' ',b.apellidos) AS usuario \n" +
+                    "FROM grupo a, usuario b\n" +
+                    "WHERE a.idinstructor = b.idusuario;";
+                rs = Operaciones.consultar(sql, null);
+                for(int i=0; i<rs[0].length; i++){
+                    instructores.add(rs[0][i]);
+                }
+                request.setAttribute("Instructores", instructores);
+                
                 request.getRequestDispatcher("grupos/grupos_consulta.jsp").forward(request, response);
                 
                 Operaciones.commit();

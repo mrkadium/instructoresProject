@@ -18,5 +18,6 @@
         <%@include file="../jsp/_table_bottom_panel.jspf"%> 
     </div>
     <script src="js/pag_n_sort.js"></script>
+    <script>setPage('menus');</script>
 
 <%@include file="../jsp/_footer.jsp"%>
