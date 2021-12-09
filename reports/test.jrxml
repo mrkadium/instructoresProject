@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0fd8585e-bf86-4d31-859e-ca732ee10466">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM ev.literal_evaluacion]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="literal_evaluacion"/>
+	</field>
+	<field name="idevaluacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idevaluacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="literal_evaluacion"/>
+	</field>
+	<field name="idliteral" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idliteral"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="literal_evaluacion"/>
+	</field>
+	<field name="idvaloracion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idvaloracion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="literal_evaluacion"/>
+	</field>
+	<field name="calificacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="calificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="literal_evaluacion"/>
+	</field>
+	<group name="idevaluacion">
+		<groupExpression><![CDATA[$F{idevaluacion}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="30" uuid="9ce658db-785f-4376-a6ce-b478a16d0152">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22a119f2-2e17-4ab3-aacb-a7147259e0f8"/>
+				</reportElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="30" uuid="a8e57e79-759f-4909-931d-33c96ba30715">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c49ec99b-d9a5-49d6-aee1-a1d8b29b2968"/>
+				</reportElement>
+				<text><![CDATA[idevaluacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="30" uuid="e11412e9-2887-40d0-a5fc-b37e061d1762">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e784d075-631f-48ce-984a-3126268cc332"/>
+				</reportElement>
+				<text><![CDATA[idliteral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="30" uuid="3cefecd6-cb36-449d-9c2f-e71be053f9b5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="541c2520-ebff-41a4-925d-986493818746"/>
+				</reportElement>
+				<text><![CDATA[idvaloracion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="30" uuid="dc8017c8-a242-4e42-929d-258b47dc26f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e7151d7-df95-4799-94e9-c0b041797804"/>
+				</reportElement>
+				<text><![CDATA[calificacion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="111" height="30" uuid="306376b8-da95-48b4-a5c4-6baefd692f04">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22a119f2-2e17-4ab3-aacb-a7147259e0f8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="111" y="0" width="111" height="30" uuid="d78b2f55-a5e0-4b37-9c8e-7c5b9a4c9fed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c49ec99b-d9a5-49d6-aee1-a1d8b29b2968"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{idevaluacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="0" width="111" height="30" uuid="a6accd38-16a2-4a33-af2a-8aabb314faef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e784d075-631f-48ce-984a-3126268cc332"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{idliteral}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="333" y="0" width="111" height="30" uuid="086f04f2-200c-4e96-8604-73518d5da4da">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="541c2520-ebff-41a4-925d-986493818746"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{idvaloracion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="444" y="0" width="111" height="30" uuid="55fc5c6f-6230-4d3a-98d0-b3cdb9c1984a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e7151d7-df95-4799-94e9-c0b041797804"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{calificacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
