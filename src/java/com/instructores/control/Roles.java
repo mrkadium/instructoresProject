@@ -119,7 +119,7 @@ public class Roles extends HttpServlet {
                 Operaciones.abrirConexion(conn);
                 Operaciones.iniciarTransaccion();
                 
-                Rol r = Operaciones.get(Integer.parseInt(request.getParameter("id")), new Rol());
+                Rol r = Operaciones.get(Integer.valueOf(request.getParameter("id")), new Rol());
                 request.setAttribute("rol", r);
                 
                 Operaciones.commit();
@@ -194,7 +194,8 @@ public class Roles extends HttpServlet {
                         }
                     } else {
                         Rol r = new Rol();
-                        r.setRol(rol);                        
+                        r.setRol(rol);          
+                        r = Operaciones.insertar(r);
                         if(r.getIdrol()!=0) {
                             request.getSession().setAttribute("resultado", 1);
                         } else {
